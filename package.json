@@ -9,7 +9,8 @@
     "preview:web": "vite preview",
     "build:api": "npx swc ./src/api -d dist",
     "dev:api": "concurrently \"npm run build:api -- -w\" \"nodemon --watch \"dist/api/**/*\" -e js ./dist/api/server.js\"",
-    "dev": "concurrently \"npm run dev:web\" \"npm run dev:api\""
+    "dev": "concurrently \"npm run dev:web\" \"npm run dev:api\"",
+    "start": "node ./dist/api/server.js"
   },
   "dependencies": {
     "express": "^4.18.2"
