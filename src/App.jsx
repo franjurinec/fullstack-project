@@ -1,5 +1,5 @@
 function App() {
-  return <div>Hello world!</div>
+  return <div>Hello Cloudflare!</div>
 }
 
 export default App
