@@ -5,8 +5,6 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "preview:web": "vite preview",
-    "dev:web": "vite",
     "dev": "wrangler pages dev -- vite"
   },
   "devDependencies": {
