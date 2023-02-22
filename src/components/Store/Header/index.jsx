@@ -1,6 +1,6 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
 
-export const Header = () => (
+const Header = () => (
   <Flex
     alignItems={'center'}
     as={'header'}
@@ -17,3 +17,5 @@ export const Header = () => (
     </Heading>
   </Flex>
 )
+
+export default Header
