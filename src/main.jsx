@@ -1,22 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-
-// Fonts
-import '@fontsource/inter/200.css'
-import '@fontsource/inter/700.css'
-
-const theme = extendTheme({
-  fonts: {
-    heading: `'Inter', sans-serif`,
-  },
-})
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { ChakraProvider } from '@chakra-ui/react'
+import theme from './theme'
+import Storefront from './components/storefront/Storefront'
+import Admin from './components/admin/Admin'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<div>Hello world!</div>} />
+          <Route path="store/*" element={<Storefront />} />
+          <Route path="admin/*" element={<Admin />} />
+        </Routes>
+      </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>
 )

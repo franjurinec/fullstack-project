@@ -1,7 +1,7 @@
 import { Box, Container } from '@chakra-ui/react'
-import { Header } from './Header'
+import { Header } from '../Header'
 
-const App = () => {
+const StoreHome = () => {
   return (
     <Box>
       <Header />
@@ -12,4 +12,4 @@ const App = () => {
   )
 }
 
-export default App
+export default StoreHome
