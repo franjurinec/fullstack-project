@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from '@chakra-ui/react'
+import { AspectRatio, Box, Center, Flex, Image } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { GET_PRODUCTS } from '../../services/productService'
 
@@ -8,12 +8,12 @@ const ProductView = () => {
   if (isLoading) return null
   if (error) return 'An error occured!'
   return (
-    <Flex gap={8}>
+    <Flex gap={8} wrap="wrap">
       {products.map((product) => (
         <Box
           key={product.id}
-          w="md"
-          h="md"
+          w="xs"
+          h="sm"
           border="2px"
           borderColor="black"
           borderRadius="lg"
@@ -22,13 +22,16 @@ const ProductView = () => {
             border: '4px',
           }}
         >
-          <Image
-            h="xs"
-            p={4}
-            objectFit="contain"
-            src={product.images[0]}
-            alt={`${product.name} photo`}
-          />
+          <AspectRatio ratio={1.1}>
+            <Center>
+              <Image
+                h=""
+                objectFit="contain"
+                src={product.images[0]}
+                alt={`${product.name} photo`}
+              />
+            </Center>
+          </AspectRatio>
 
           <Box p="6" borderColor="black" borderTop="2px">
             <Box
