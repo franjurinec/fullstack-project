@@ -7,5 +7,5 @@ export const onRequest = async ({ env }) => {
     .list()
     .autoPagingToArray({ limit: 10000 })
 
-  return new Response(JSON.stringify(products, null, 2))
+  return Response.json(products)
 }
