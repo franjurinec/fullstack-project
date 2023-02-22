@@ -14,6 +14,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/inter": "^4.5.15",
+    "@tanstack/react-query": "^4.24.10",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react-swc": "^3.0.0",
@@ -31,7 +32,7 @@
     "wrangler": "^2.9.0"
   },
   "dependencies": {
-    "stripe": "^11.9.1",
-    "@tsndr/cloudflare-worker-jwt": "^2.2.1"
+    "@tsndr/cloudflare-worker-jwt": "^2.2.1",
+    "stripe": "^11.9.1"
   }
 }
