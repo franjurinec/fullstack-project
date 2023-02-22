@@ -1,3 +1,3 @@
-export async function onRequest() {
+export const onRequest = async () => {
   return new Response('Hello!')
 }

@@ -25,3 +25,6 @@ dist-ssr
 
 # Cloudflare Functions Local Env
 .dev.vars
+
+# HTTP Test Files
+*.http
