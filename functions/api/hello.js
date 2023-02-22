@@ -1,3 +1,3 @@
-export async function onRequest({ request, env }) {
+export async function onRequest() {
   return new Response('Hello!')
 }
