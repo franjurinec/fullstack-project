@@ -1,5 +1,17 @@
+export const authFetch = (url, options) => {
+  const token = localStorage.getItem('token')
+
+  return fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      ...options?.headers,
+    },
+    ...options,
+  })
+}
+
 export const authenticate = async (password) => {
-  const response = await fetch('/api/authenticate', {
+  const response = await fetch('/api/auth', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -15,11 +27,12 @@ export const authenticate = async (password) => {
   localStorage.setItem('token', token)
 }
 
-export const signout = () => {
+export const deleteAuth = () => {
   localStorage.removeItem('token')
 }
 
-export const isAuthenticated = () => {
-  const token = localStorage.getItem('token')
-  return !!token
+export const isAuthenticated = async () => {
+  const result = await authFetch('/api/auth/check')
+  const data = await result.json()
+  return !!data?.authenticated // boolean return
 }

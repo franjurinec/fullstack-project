@@ -1,12 +1,11 @@
 import { AspectRatio, Box, Center, Flex, Image } from '@chakra-ui/react'
-import { useQuery } from '@tanstack/react-query'
-import { GET_PRODUCTS } from '../../services/productService'
+import { useProducts } from '../../hooks/react-query'
 
 const ProductView = () => {
-  const { data: products, error, isLoading } = useQuery(GET_PRODUCTS)
+  const { products, isLoading, error } = useProducts()
 
   if (isLoading) return null
-  if (error) return 'An error occured!'
+  if (error) return 'An error occured when loading products!'
   return (
     <Flex gap={8} wrap="wrap">
       {products.map((product) => (

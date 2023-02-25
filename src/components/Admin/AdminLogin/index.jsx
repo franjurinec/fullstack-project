@@ -1,13 +1,11 @@
 import { Center } from '@chakra-ui/react'
-import { authenticate } from '../../../services/authService'
+import { useAuth } from '../../../hooks/react-query'
 import PasswordForm from './PasswordForm'
 
-const AdminLogin = ({ setAuthenticated }) => {
-  const onSubmit = (values) => {
-    authenticate(values.password)
-      .then(() => setAuthenticated(true))
-      .catch((error) => console.error(error))
-  }
+const AdminLogin = () => {
+  const { authenticate } = useAuth()
+
+  const onSubmit = (values) => authenticate(values.password)
 
   return (
     <Center h="calc(100vh)">

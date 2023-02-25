@@ -1,13 +1,12 @@
 import AdminLogin from './AdminLogin'
 import AdminControlPanel from './AdminControlPanel'
-import { isAuthenticated } from '../../services/authService'
-import { useState } from 'react'
+import { useAuthStatus } from '../../hooks/react-query'
 
 const Admin = () => {
-  const [authenticated, setAuthenticated] = useState(isAuthenticated())
+  const { authenticated } = useAuthStatus()
 
-  if (!authenticated) return <AdminLogin setAuthenticated={setAuthenticated} />
-  return <AdminControlPanel setAuthenticated={setAuthenticated} />
+  if (!authenticated) return <AdminLogin />
+  return <AdminControlPanel />
 }
 
 export default Admin

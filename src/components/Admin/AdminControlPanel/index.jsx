@@ -1,13 +1,11 @@
 import { Button } from '@chakra-ui/react'
-import { signout } from '../../../services/authService'
+import { useDeleteAuth } from '../../../hooks/react-query'
 
-const AdminControlPanel = ({ setAuthenticated }) => {
-  const handleSignout = () => {
-    signout()
-    setAuthenticated(false)
-  }
+const AdminControlPanel = () => {
+  const { deleteAuth } = useDeleteAuth()
+
   return (
-    <Button mt={4} colorScheme="blackAlpha" onClick={handleSignout}>
+    <Button mt={4} colorScheme="blackAlpha" onClick={deleteAuth}>
       Sign Out
     </Button>
   )

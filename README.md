@@ -6,4 +6,4 @@
 - ESLint/Prettier setup: 1h
 - Refactoring: 1h
 - Serverless JWT login endpoint: 1h
-- Clint-side basic auth and form control: 2h
+- Clint-side basic auth and form control: 5h
