@@ -6,20 +6,22 @@ import {
 } from '../services/authService'
 import { getProducts } from '../services/productService'
 
-const baseQueryHook = (key, fn, name) => {
+const baseQueryHook = (name, fn, queryKey) => {
   const { data, ...query } = useQuery({
-    queryKey: [key],
+    queryKey,
     queryFn: fn,
   })
 
-  return { [name ?? key]: data, ...query }
+  return { [name]: data, ...query }
 }
 
 const baseMutationHook = (name, fn, queryKey) => {
   const queryClient = useQueryClient()
   const { mutate, ...mutation } = useMutation({
     mutationFn: fn,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey }),
+    onSuccess: () => {
+      if (queryKey) queryClient.invalidateQueries({ queryKey })
+    },
   })
   return { [name]: mutate, ...mutation }
 }
@@ -31,7 +33,7 @@ export const useProducts = () => baseQueryHook(productsKey, getProducts)
 // Auth
 const authKey = 'auth'
 export const useAuthStatus = () =>
-  baseQueryHook(authKey, isAuthenticated, 'authenticated')
+  baseQueryHook('authenticated', isAuthenticated, [authKey])
 
 export const useDeleteAuth = () =>
   baseMutationHook('deleteAuth', deleteAuth, [authKey])
