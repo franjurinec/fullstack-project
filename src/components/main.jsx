@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ChakraProvider theme={theme}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Store />} />
+            <Route path="*" element={<Store />} />
             <Route path="admin/*" element={<Admin />} />
           </Routes>
         </BrowserRouter>
