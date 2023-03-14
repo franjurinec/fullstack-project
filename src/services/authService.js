@@ -32,7 +32,7 @@ export const deleteAuth = () => {
 }
 
 export const isAuthenticated = async () => {
-  const result = await authFetch('/api/auth/check')
-  const data = await result.json()
+  const response = await authFetch('/api/auth/check')
+  const data = await response.json()
   return !!data?.authenticated // boolean return
 }
