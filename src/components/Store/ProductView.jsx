@@ -1,8 +1,8 @@
 import { AspectRatio, Box, Center, Flex, Image } from '@chakra-ui/react'
-import { useProducts } from '../../hooks/react-query'
+import useProductsQuery from '../../hooks/useProductsQuery'
 
 const ProductView = () => {
-  const { products, isLoading, error } = useProducts()
+  const { data: products, isLoading, error } = useProductsQuery()
 
   if (isLoading) return null
   if (error) return 'An error occured when loading products!'

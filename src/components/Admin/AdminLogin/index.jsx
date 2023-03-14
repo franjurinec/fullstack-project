@@ -1,9 +1,9 @@
 import { Center } from '@chakra-ui/react'
-import { useAuth } from '../../../hooks/react-query'
+import useAuthCreateMutation from '../../../hooks/useAuthCreateMutation'
 import PasswordForm from './PasswordForm'
 
 const AdminLogin = () => {
-  const { authenticate } = useAuth()
+  const { mutate: authenticate } = useAuthCreateMutation()
 
   const onSubmit = (values) => authenticate(values.password)
 

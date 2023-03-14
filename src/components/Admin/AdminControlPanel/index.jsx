@@ -1,8 +1,8 @@
 import { Button } from '@chakra-ui/react'
-import { useDeleteAuth } from '../../../hooks/react-query'
+import useAuthDeleteMutation from '../../../hooks/useAuthDeleteMutation'
 
 const AdminControlPanel = () => {
-  const { deleteAuth } = useDeleteAuth()
+  const { mutate: deleteAuth } = useAuthDeleteMutation()
 
   return (
     <Button mt={4} colorScheme="blackAlpha" onClick={deleteAuth}>

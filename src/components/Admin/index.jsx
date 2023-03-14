@@ -1,11 +1,11 @@
 import AdminLogin from './AdminLogin'
 import AdminControlPanel from './AdminControlPanel'
-import { useAuthStatus } from '../../hooks/react-query'
+import useAuthStatusQuery from '../../hooks/useAuthStatusQuery'
 
 const Admin = () => {
-  const { authenticated } = useAuthStatus()
+  const { data: authStatus } = useAuthStatusQuery()
 
-  if (!authenticated) return <AdminLogin />
+  if (!authStatus) return <AdminLogin />
   return <AdminControlPanel />
 }
 
