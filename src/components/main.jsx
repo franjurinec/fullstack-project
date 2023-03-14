@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import Admin from './components/Admin'
-import Store from './components/Store'
-import theme from './theme'
+import Admin from './Admin'
+import Store from './Store'
+import theme from '../theme'
 
 const queryClient = new QueryClient()
 
