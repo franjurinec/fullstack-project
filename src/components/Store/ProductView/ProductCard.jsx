@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
           border: '4px',
         }}
         _active={{
-          border: '8px',
+          borderStyle: 'double',
         }}
       >
         <AspectRatio ratio={1.1}>
