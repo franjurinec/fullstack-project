@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import useProductsQuery from '../../../hooks/useProductsQuery'
 import ProductCard from './ProductCard'
 
-const ProductView = () => {
+const ProductList = () => {
   const { data: products, isLoading, error } = useProductsQuery()
 
   if (isLoading) return null
@@ -16,4 +16,4 @@ const ProductView = () => {
   )
 }
 
-export default ProductView
+export default ProductList

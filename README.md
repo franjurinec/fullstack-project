@@ -9,3 +9,4 @@
 - Clint-side basic auth and form control: 5h
 - Custom hooks refactor: 1h
 - Styling Update: 1h
+- Product Detail View: 2h
