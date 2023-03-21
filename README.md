@@ -10,3 +10,4 @@
 - Custom hooks refactor: 1h
 - Styling Update: 1h
 - Product Detail View: 2h
+- Cart State: 4h
