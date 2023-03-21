@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react'
 import useProductQuery from '../../hooks/useProductQuery'
 import { useParams } from 'react-router-dom'
+import { useCartStore } from '../../store/cartStore'
 
 const ProductDetail = () => {
   const params = useParams()
@@ -17,11 +18,14 @@ const ProductDetail = () => {
     error,
   } = useProductQuery(`prod_${params.id}`)
 
-  console.log(product)
+  const addToCart = useCartStore((state) => state.add)
+
+  const onAddToCartClicked = () => {
+    addToCart(product.id, 1)
+  }
 
   if (isLoading) return null
   if (error) return `An error occured when loading product ${params.id}!`
-
   return (
     <Flex gap={16}>
       <Flex direction="column" width="xl">
@@ -34,6 +38,7 @@ const ProductDetail = () => {
         <Text>{product.description}</Text>
         <Heading>{product.price}</Heading>
         <Button
+          onClick={onAddToCartClicked}
           bgColor="black"
           textColor="white"
           _hover={{ bg: '#444444' }}

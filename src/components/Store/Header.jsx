@@ -18,12 +18,19 @@ const Header = () => {
         flexGrow={1}
         alignItems="center"
       >
-        <Link as={RouterLink} to="/" style={{ textDecoration: 'none' }}>
-          <Heading size="3xl">
-            GOOD.
-            <Text as="span" fontWeight="thin">
-              STORE
-            </Text>
+        <Flex flexGrow={1}>
+          <Link as={RouterLink} to="/" style={{ textDecoration: 'none' }}>
+            <Heading size="3xl">
+              GOOD.
+              <Text as="span" fontWeight="thin">
+                STORE
+              </Text>
+            </Heading>
+          </Link>
+        </Flex>
+        <Link as={RouterLink} to="/cart" style={{ textDecoration: 'none' }}>
+          <Heading size="3xl" fontWeight="thin">
+            CART
           </Heading>
         </Link>
       </Flex>
