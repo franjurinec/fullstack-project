@@ -1,15 +1,19 @@
-import { useCartStore } from '../../../store/cartStore'
+import useCartProductsQuery from '../../../hooks/useCartProductsQuery'
 
 const Cart = () => {
-  const items = useCartStore((state) => state.cart)
+  const { data: cartProducts, isLoading, error } = useCartProductsQuery()
 
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error!</div>
   return (
     <div>
-      {Object.entries(items).map(([id, quantity]) => (
-        <div key={id}>
-          {id}: {quantity}
-        </div>
-      ))}
+      {cartProducts.map((product) => {
+        return (
+          <div key={product.id}>
+            {product.name}: {product.quantity}
+          </div>
+        )
+      })}
     </div>
   )
 }
