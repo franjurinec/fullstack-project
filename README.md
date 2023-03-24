@@ -12,3 +12,4 @@
 - Product Detail View: 2h
 - Cart State: 4h
 - Cart Data Fetching: 2h
+- Stripe Checkout Integration: 5h
