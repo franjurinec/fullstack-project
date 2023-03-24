@@ -21,7 +21,7 @@ const ProductDetail = () => {
   const addToCart = useCartStore((state) => state.add)
 
   const onAddToCartClicked = () => {
-    addToCart(product.id, 1)
+    addToCart(product, 1)
   }
 
   if (isLoading) return null

@@ -9,7 +9,7 @@ export const simpleProduct = (product) => ({
     style: 'currency',
     currency: product.default_price.currency,
   }).format(product.default_price.unit_amount / 100),
-  rawPrice: product.default_price.unit_amount,
+  priceId: product.default_price.id,
 })
 
 export const onRequest = async ({ env, params }) => {

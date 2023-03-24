@@ -3,10 +3,15 @@ import { produce } from 'immer'
 
 export const useCartStore = create((set) => ({
   cart: {},
-  add: (id, quantity) =>
+  add: ({ id, ...info }, quantity) =>
     set(
       produce((draft) => {
-        draft.cart[id] = (draft.cart[id] ?? 0) + quantity
+        if (draft.cart[id]) draft.cart[id].quantity += quantity
+        else
+          draft.cart[id] = {
+            quantity,
+            ...info,
+          }
       })
     ),
   removeAllById: (id) =>
@@ -18,14 +23,14 @@ export const useCartStore = create((set) => ({
   decrementById: (id) =>
     set(
       produce((draft) => {
-        if (draft.cart[id] > 1) draft.cart[id]--
+        if (draft.cart[id]?.quantity > 1) draft.cart[id].quantity -= 1
         else delete draft.cart[id]
       })
     ),
   incrementById: (id) =>
     set(
       produce((draft) => {
-        draft.cart[id] = (draft.cart[id] ?? 0) + 1
+        if (draft.cart[id]?.quantity) draft.cart[id].quantity += 1
       })
     ),
 }))
