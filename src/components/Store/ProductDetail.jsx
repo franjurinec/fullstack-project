@@ -27,7 +27,7 @@ const ProductDetail = () => {
   if (isLoading) return null
   if (error) return `An error occured when loading product ${params.id}!`
   return (
-    <Flex gap={16}>
+    <Flex gap={16} wrap="wrap">
       <Flex direction="column" width="xl">
         <AspectRatio ratio={1.1}>
           <Image src={product.image} borderRadius="lg" />

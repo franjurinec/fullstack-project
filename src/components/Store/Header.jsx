@@ -17,6 +17,7 @@ const Header = () => {
         maxWidth="8xl"
         flexGrow={1}
         alignItems="center"
+        wrap="wrap"
       >
         <Flex flexGrow={1}>
           <Link as={RouterLink} to="/" style={{ textDecoration: 'none' }}>
