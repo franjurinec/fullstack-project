@@ -20,21 +20,27 @@ const Cart = () => {
 
   return (
     <Box>
-      {Object.entries(cartItems).map(([id, info]) => (
-        <CartItem key={id} productId={id} quantity={info.quantity} />
-      ))}
-      <Button
-        onClick={onCheckout}
-        bgColor="black"
-        textColor="white"
-        _hover={{ bg: '#444444' }}
-        _active={{
-          bg: '#222222',
-        }}
-        size="lg"
-      >
-        Checkout
-      </Button>
+      {Object.keys(cartItems).length ? (
+        <>
+          {Object.entries(cartItems).map(([id, info]) => (
+            <CartItem key={id} productId={id} quantity={info.quantity} />
+          ))}
+          <Button
+            onClick={onCheckout}
+            bgColor="black"
+            textColor="white"
+            _hover={{ bg: '#444444' }}
+            _active={{
+              bg: '#222222',
+            }}
+            size="lg"
+          >
+            Checkout
+          </Button>
+        </>
+      ) : (
+        <div>Cart Empty!</div>
+      )}
     </Box>
   )
 }

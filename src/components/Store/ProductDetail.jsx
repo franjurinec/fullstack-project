@@ -5,6 +5,7 @@ import {
   AspectRatio,
   Heading,
   Button,
+  useToast,
 } from '@chakra-ui/react'
 import useProductQuery from '../../hooks/useProductQuery'
 import { useParams } from 'react-router-dom'
@@ -20,8 +21,15 @@ const ProductDetail = () => {
 
   const addToCart = useCartStore((state) => state.add)
 
+  const toast = useToast()
+
   const onAddToCartClicked = () => {
     addToCart(product, 1)
+    toast({
+      title: 'Added to cart!',
+      status: 'success',
+      duration: 3600,
+    })
   }
 
   if (isLoading) return null

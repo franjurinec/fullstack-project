@@ -1,7 +1,14 @@
 import { Flex, Heading, Link, Text } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
+import { useCartStore } from '../../store/cartStore'
 
 const Header = () => {
+  const cartItems = useCartStore((state) => state.cart)
+  const itemCount = Object.values(cartItems).reduce(
+    (res, item) => res + item.quantity,
+    0
+  )
+
   return (
     <Flex
       justifyContent="center"
@@ -31,7 +38,7 @@ const Header = () => {
         </Flex>
         <Link as={RouterLink} to="/cart" style={{ textDecoration: 'none' }}>
           <Heading size="3xl" fontWeight="thin">
-            CART
+            CART {!!itemCount && `(${itemCount})`}
           </Heading>
         </Link>
       </Flex>
