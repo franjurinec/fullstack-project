@@ -13,3 +13,4 @@
 - Cart State: 4h
 - Cart Data Fetching: 2h
 - Stripe Checkout Integration: 5h
+- Misc. UI Improvements: 2h
