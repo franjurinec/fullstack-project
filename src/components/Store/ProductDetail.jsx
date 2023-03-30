@@ -13,11 +13,7 @@ import { useCartStore } from '../../store/cartStore'
 
 const ProductDetail = () => {
   const params = useParams()
-  const {
-    data: product,
-    isLoading,
-    error,
-  } = useProductQuery(`prod_${params.id}`)
+  const { data: product, isLoading, error } = useProductQuery(params.id)
 
   const addToCart = useCartStore((state) => state.add)
 

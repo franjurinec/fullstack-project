@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
   return (
     <Link
       as={RouterLink}
-      to={`/product/${product.id.substring(5)}`}
+      to={`/product/${product.id}`}
       style={{ textDecoration: 'none' }}
     >
       <Flex

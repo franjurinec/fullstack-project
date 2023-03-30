@@ -14,3 +14,8 @@ export const postCheckout = async (items) => {
   const data = await response.json()
   return data.sessionUrl
 }
+
+export const getCheckoutSession = async (id) => {
+  const response = await fetch(`/api/checkout/${id}`)
+  return await response.json()
+}
