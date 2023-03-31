@@ -15,9 +15,6 @@ const Order = () => {
     checkoutSession?.payment_status === 'paid'
 
   if (isLoading || error) return null
-
-  console.log(checkoutSession)
-
   if (orderSuccessful) return <OrderSuccess checkoutSession={checkoutSession} />
   return <OrderFail />
 }

@@ -2,21 +2,24 @@ import { Box, Button } from '@chakra-ui/react'
 import { postCheckout } from '../../../services/checkoutService'
 import { useCartStore } from '../../../store/cartStore'
 import CartItem from './CartItem'
+import { useMemo } from 'react'
 
 const Cart = () => {
   const cartItems = useCartStore((state) => state.cart)
 
-  const onCheckout = () => {
-    const items = Object.values(cartItems).map(
-      ({ quantity, priceId: price }) => ({
+  const items = useMemo(
+    () =>
+      Object.values(cartItems).map(({ quantity, priceId: price }) => ({
         quantity,
         price,
-      })
-    )
+      })),
+    [cartItems]
+  )
+
+  const onCheckout = () =>
     postCheckout(items).then((checkoutUrl) =>
       window.location.replace(checkoutUrl)
     )
-  }
 
   return (
     <Box>

@@ -15,3 +15,4 @@
 - Stripe Checkout Integration: 5h
 - Misc. UI Improvements: 2h
 - Order Confirmation Page: 5h
+- Misc. UI Improvements: 1h
