@@ -1,36 +1,34 @@
 import { create } from 'zustand'
-import { produce } from 'immer'
+import { persist } from 'zustand/middleware'
+import { immer } from 'zustand/middleware/immer'
 
-export const useCartStore = create((set) => ({
-  cart: {},
-  add: ({ id, ...info }, quantity) =>
-    set(
-      produce((draft) => {
-        if (draft.cart[id]) draft.cart[id].quantity += quantity
-        else
-          draft.cart[id] = {
-            quantity,
-            ...info,
-          }
-      })
-    ),
-  removeAllById: (id) =>
-    set(
-      produce((draft) => {
-        delete draft.cart[id]
-      })
-    ),
-  decrementById: (id) =>
-    set(
-      produce((draft) => {
-        if (draft.cart[id]?.quantity > 1) draft.cart[id].quantity -= 1
-        else delete draft.cart[id]
-      })
-    ),
-  incrementById: (id) =>
-    set(
-      produce((draft) => {
-        if (draft.cart[id]?.quantity) draft.cart[id].quantity += 1
-      })
-    ),
-}))
+export const useCartStore = create(
+  persist(
+    immer((set) => ({
+      cart: {},
+      add: ({ id, ...info }, quantity) =>
+        set((state) => {
+          if (state.cart[id]) state.cart[id].quantity += quantity
+          else
+            state.cart[id] = {
+              quantity,
+              ...info,
+            }
+        }),
+      removeAllById: (id) =>
+        set((state) => {
+          delete state.cart[id]
+        }),
+      decrementById: (id) =>
+        set((state) => {
+          if (state.cart[id]?.quantity > 1) state.cart[id].quantity -= 1
+          else delete state.cart[id]
+        }),
+      incrementById: (id) =>
+        set((state) => {
+          if (state.cart[id]?.quantity) state.cart[id].quantity += 1
+        }),
+    })),
+    { name: 'fj-cart-store' }
+  )
+)
