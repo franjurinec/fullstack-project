@@ -1,9 +1,10 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Center, Heading, Link } from '@chakra-ui/react'
 import Button from '../../common/Button'
 import CartItem from './CartItem'
 import { postCheckout } from '../../../services/checkoutService'
 import { useCartStore } from '../../../store/cartStore'
 import { useMemo } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
 const Cart = () => {
   const cartItems = useCartStore((state) => state.cart)
@@ -32,7 +33,19 @@ const Cart = () => {
           <Button onClick={onCheckout}>Checkout</Button>
         </>
       ) : (
-        <div>Cart Empty!</div>
+        <Center flexDir="column">
+          <Heading fontSize="3xl" fontWeight="light">
+            Your cart is empty!
+          </Heading>
+          <Link
+            pt={10}
+            as={RouterLink}
+            to={`/`}
+            style={{ textDecoration: 'none' }}
+          >
+            <Button>Return to home</Button>
+          </Link>
+        </Center>
       )}
     </Box>
   )
