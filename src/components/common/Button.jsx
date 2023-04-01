@@ -1,6 +1,6 @@
 import { Button as ChakraButton } from '@chakra-ui/react'
 
-const Button = ({ onClick, children }) => (
+const Button = ({ onClick, children, ...props }) => (
   <ChakraButton
     onClick={onClick}
     bgColor="black"
@@ -10,6 +10,7 @@ const Button = ({ onClick, children }) => (
       bg: '#222222',
     }}
     size="lg"
+    {...props}
   >
     <>{children}</>
   </ChakraButton>

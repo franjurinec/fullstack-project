@@ -1,5 +1,6 @@
-import { Button, FormControl, FormErrorMessage, Input } from '@chakra-ui/react'
+import { FormControl, FormErrorMessage, Input } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
+import Button from '../../common/Button'
 
 const PasswordForm = ({ onSubmit }) => {
   const {
@@ -22,12 +23,7 @@ const PasswordForm = ({ onSubmit }) => {
           {errors.name && errors.name.message}
         </FormErrorMessage>
       </FormControl>
-      <Button
-        mt={4}
-        colorScheme="blackAlpha"
-        isLoading={isSubmitting}
-        type="submit"
-      >
+      <Button mt={4} isLoading={isSubmitting} type="submit">
         Verify
       </Button>
     </form>

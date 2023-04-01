@@ -1,5 +1,5 @@
-import { Button } from '@chakra-ui/react'
 import useAuthDeleteMutation from '../../../hooks/useAuthDeleteMutation'
+import Button from '../../common/Button'
 
 const AdminControlPanel = () => {
   const { mutate: deleteAuth } = useAuthDeleteMutation()

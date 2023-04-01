@@ -19,9 +19,7 @@ export const authenticate = async (password) => {
     body: JSON.stringify({ password }),
   })
 
-  if (response.status !== 200) {
-    throw new Error('Authentication error!')
-  }
+  if (response.status !== 200) throw new Error('Authentication error!')
 
   const { token } = await response.json()
   localStorage.setItem('token', token)
