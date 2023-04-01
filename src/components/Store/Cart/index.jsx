@@ -1,4 +1,4 @@
-import { Box, Center, Heading, Link } from '@chakra-ui/react'
+import { Box, Center, Flex, Heading, Link } from '@chakra-ui/react'
 import Button from '../../common/Button'
 import CartItem from './CartItem'
 import { postCheckout } from '../../../services/checkoutService'
@@ -27,10 +27,14 @@ const Cart = () => {
     <Box>
       {Object.keys(cartItems).length ? (
         <>
-          {Object.entries(cartItems).map(([id, info]) => (
-            <CartItem key={id} productId={id} quantity={info.quantity} />
-          ))}
-          <Button onClick={onCheckout}>Checkout</Button>
+          <Flex flexDir="column" gap={4}>
+            {Object.entries(cartItems).map(([id, info]) => (
+              <CartItem key={id} productId={id} quantity={info.quantity} />
+            ))}
+          </Flex>
+          <Button mt={4} onClick={onCheckout}>
+            Checkout
+          </Button>
         </>
       ) : (
         <Center flexDir="column">
