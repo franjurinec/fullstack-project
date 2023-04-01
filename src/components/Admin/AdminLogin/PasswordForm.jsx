@@ -11,7 +11,13 @@ const PasswordForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl isInvalid={errors.name}>
-        <Input id="password" placeholder="Password" {...register('password')} />
+        <Input
+          id="password"
+          placeholder="Password"
+          type="password"
+          {...register('password')}
+        />
+
         <FormErrorMessage>
           {errors.name && errors.name.message}
         </FormErrorMessage>

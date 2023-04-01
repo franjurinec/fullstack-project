@@ -1,7 +1,8 @@
-import { Box, Button } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
+import Button from '../../common/Button'
+import CartItem from './CartItem'
 import { postCheckout } from '../../../services/checkoutService'
 import { useCartStore } from '../../../store/cartStore'
-import CartItem from './CartItem'
 import { useMemo } from 'react'
 
 const Cart = () => {
@@ -28,18 +29,7 @@ const Cart = () => {
           {Object.entries(cartItems).map(([id, info]) => (
             <CartItem key={id} productId={id} quantity={info.quantity} />
           ))}
-          <Button
-            onClick={onCheckout}
-            bgColor="black"
-            textColor="white"
-            _hover={{ bg: '#444444' }}
-            _active={{
-              bg: '#222222',
-            }}
-            size="lg"
-          >
-            Checkout
-          </Button>
+          <Button onClick={onCheckout}>Checkout</Button>
         </>
       ) : (
         <div>Cart Empty!</div>

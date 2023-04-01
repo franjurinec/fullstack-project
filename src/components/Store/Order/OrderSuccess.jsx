@@ -1,4 +1,5 @@
-import { Button, Center, Heading, Link } from '@chakra-ui/react'
+import { Center, Heading, Link } from '@chakra-ui/react'
+import Button from '../../common/Button'
 import { Link as RouterLink } from 'react-router-dom'
 
 const OrderSuccess = ({ checkoutSession }) => (
@@ -10,17 +11,7 @@ const OrderSuccess = ({ checkoutSession }) => (
       {`You should receive your receipt at ${checkoutSession.customer_details.email} shortly.`}
     </Heading>
     <Link pt={10} as={RouterLink} to={`/`} style={{ textDecoration: 'none' }}>
-      <Button
-        bgColor="black"
-        textColor="white"
-        _hover={{ bg: '#444444' }}
-        _active={{
-          bg: '#222222',
-        }}
-        size="lg"
-      >
-        Return to home
-      </Button>
+      <Button>Return to home</Button>
     </Link>
   </Center>
 )

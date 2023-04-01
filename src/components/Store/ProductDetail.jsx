@@ -4,9 +4,9 @@ import {
   Image,
   AspectRatio,
   Heading,
-  Button,
   useToast,
 } from '@chakra-ui/react'
+import Button from '../common/Button'
 import useProductQuery from '../../hooks/useProductQuery'
 import { useParams } from 'react-router-dom'
 import { useCartStore } from '../../store/cartStore'
@@ -41,18 +41,7 @@ const ProductDetail = () => {
         <Heading>{product.name}</Heading>
         <Text>{product.description}</Text>
         <Heading>{product.price}</Heading>
-        <Button
-          onClick={onAddToCartClicked}
-          bgColor="black"
-          textColor="white"
-          _hover={{ bg: '#444444' }}
-          _active={{
-            bg: '#222222',
-          }}
-          size="lg"
-        >
-          Add to cart
-        </Button>
+        <Button onClick={onAddToCartClicked}>Add to cart</Button>
       </Flex>
     </Flex>
   )

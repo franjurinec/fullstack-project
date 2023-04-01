@@ -1,5 +1,6 @@
-import { Button, Center, Heading, Link } from '@chakra-ui/react'
+import { Center, Heading, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
+import Button from '../../common/Button'
 
 const OrderFail = () => {
   return (
@@ -11,17 +12,7 @@ const OrderFail = () => {
         Your payment method has not been charged at this time.
       </Heading>
       <Link pt={10} as={RouterLink} to={`/`} style={{ textDecoration: 'none' }}>
-        <Button
-          bgColor="black"
-          textColor="white"
-          _hover={{ bg: '#444444' }}
-          _active={{
-            bg: '#222222',
-          }}
-          size="lg"
-        >
-          Return to home
-        </Button>
+        <Button>Return to home</Button>
       </Link>
     </Center>
   )

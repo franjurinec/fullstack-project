@@ -17,3 +17,4 @@
 - Order Confirmation Page: 5h
 - Misc. UI Improvements: 1h
 - Improved Zustand patters, added state persistence: 3h
+- Misc. UI Improvements: 1h
