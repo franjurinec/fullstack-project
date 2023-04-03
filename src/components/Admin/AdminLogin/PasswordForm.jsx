@@ -1,4 +1,10 @@
-import { FormControl, FormErrorMessage, Input } from '@chakra-ui/react'
+import {
+  Box,
+  Center,
+  FormControl,
+  FormErrorMessage,
+  Input,
+} from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import Button from '../../common/Button'
 
@@ -10,23 +16,27 @@ const PasswordForm = ({ onSubmit }) => {
   } = useForm()
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={errors.name}>
-        <Input
-          id="password"
-          placeholder="Password"
-          type="password"
-          {...register('password')}
-        />
+    <Box w="md">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl isInvalid={errors.name}>
+          <Input
+            id="password"
+            placeholder="Password"
+            type="password"
+            {...register('password')}
+          />
 
-        <FormErrorMessage>
-          {errors.name && errors.name.message}
-        </FormErrorMessage>
-      </FormControl>
-      <Button mt={4} isLoading={isSubmitting} type="submit">
-        Verify
-      </Button>
-    </form>
+          <FormErrorMessage>
+            {errors.name && errors.name.message}
+          </FormErrorMessage>
+        </FormControl>
+        <Center>
+          <Button w="38.2%" mt={4} isLoading={isSubmitting} type="submit">
+            Authenticate
+          </Button>
+        </Center>
+      </form>
+    </Box>
   )
 }
 

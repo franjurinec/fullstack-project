@@ -9,7 +9,7 @@ import ProductList from './ProductList'
 const Store = () => (
   <Box>
     <Header />
-    <Container maxWidth={'8xl'}>
+    <Container maxWidth="8xl">
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductDetail />} />

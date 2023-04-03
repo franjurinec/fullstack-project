@@ -18,3 +18,4 @@
 - Misc. UI Improvements: 1h
 - Improved Zustand patters, added state persistence: 3h
 - Misc. UI Improvements: 1h
+- Admin Page Scaffolding: 3h
