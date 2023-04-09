@@ -16,7 +16,7 @@ const PasswordForm = ({ onSubmit }) => {
   } = useForm()
 
   return (
-    <Box w="md">
+    <Box w="xs">
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl isInvalid={errors.name}>
           <Input
@@ -25,13 +25,12 @@ const PasswordForm = ({ onSubmit }) => {
             type="password"
             {...register('password')}
           />
-
           <FormErrorMessage>
             {errors.name && errors.name.message}
           </FormErrorMessage>
         </FormControl>
         <Center>
-          <Button w="38.2%" mt={4} isLoading={isSubmitting} type="submit">
+          <Button mt={4} isLoading={isSubmitting} type="submit">
             Authenticate
           </Button>
         </Center>

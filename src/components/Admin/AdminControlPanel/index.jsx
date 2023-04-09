@@ -1,3 +1,8 @@
+import { Route, Routes, Link as RouterLink } from 'react-router-dom'
+import useAuthDeleteMutation from '../../../hooks/useAuthDeleteMutation'
+import ManageSite from './ManageSite'
+import ManageProducts from './ManageProducts'
+import ButtonPrimary from '../../common/Button'
 import {
   Button,
   Center,
@@ -6,12 +11,6 @@ import {
   Heading,
   Link,
 } from '@chakra-ui/react'
-import useAuthDeleteMutation from '../../../hooks/useAuthDeleteMutation'
-import ButtonPrimary from '../../common/Button'
-import { AddIcon } from '@chakra-ui/icons'
-import { Route, Routes, Link as RouterLink } from 'react-router-dom'
-import AdminProductList from './AdminProductList'
-import NewProduct from './NewProduct'
 
 const AdminControlPanel = () => {
   const { mutate: deleteAuth } = useAuthDeleteMutation()
@@ -41,23 +40,23 @@ const AdminControlPanel = () => {
               style={{ textDecoration: 'none' }}
             >
               <Button w="100%" variant="ghost">
-                Manage Products
+                Manage Store Site
               </Button>
             </Link>
             <Link
               as={RouterLink}
-              to={`/admin/new`}
+              to={`/admin/products`}
               style={{ textDecoration: 'none' }}
             >
               <Button w="100%" variant="ghost">
-                <AddIcon boxSize={3} mr={2} /> New Product
+                Manage Products
               </Button>
             </Link>
             <ButtonPrimary onClick={deleteAuth}>Sign Out</ButtonPrimary>
           </Flex>
           <Routes>
-            <Route path="/" element={<AdminProductList />} />
-            <Route path="/new" element={<NewProduct />} />
+            <Route path="/" element={<ManageSite />} />
+            <Route path="/products" element={<ManageProducts />} />
           </Routes>
         </Flex>
       </Container>
