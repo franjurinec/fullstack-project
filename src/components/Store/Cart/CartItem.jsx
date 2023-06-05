@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react'
-import useProductQuery from '../../../hooks/useProductQuery'
+import { useProductQuery } from '../../../hooks/productHooks'
 import { useCartStore } from '../../../store/cartStore'
 import Button from '../../common/Button'
 

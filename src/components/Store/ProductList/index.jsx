@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import useProductsQuery from '../../../hooks/useProductsQuery'
+import { useProductsQuery } from '../../../hooks/productHooks'
 import ProductCard from './ProductCard'
 
 const ProductList = () => {

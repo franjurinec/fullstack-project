@@ -22,3 +22,5 @@
 - Admin Auth Middleware: 2h
 - Admin Product Table: 3h
 - API Extension: 2h
+- Hooks Refactor: 1h
+- New Service Functions, Hooks, Admin Features: 2h

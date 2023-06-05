@@ -1,6 +1,6 @@
 import { Center, useToast } from '@chakra-ui/react'
-import useAuthCreateMutation from '../../../hooks/useAuthCreateMutation'
 import PasswordForm from './PasswordForm'
+import { useAuthCreateMutation } from '../../../hooks/authHooks'
 
 const AdminLogin = () => {
   const { mutate: authenticate } = useAuthCreateMutation()

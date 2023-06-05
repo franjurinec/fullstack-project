@@ -1,5 +1,5 @@
 import { Route, Routes, Link as RouterLink } from 'react-router-dom'
-import useAuthDeleteMutation from '../../../hooks/useAuthDeleteMutation'
+import { useAuthDeleteMutation } from '../../../hooks/authHooks'
 import ManageSite from './ManageSite'
 import ManageProducts from './ManageProducts'
 import ButtonPrimary from '../../common/Button'

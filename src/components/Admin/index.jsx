@@ -1,6 +1,6 @@
 import AdminLogin from './AdminLogin'
 import AdminControlPanel from './AdminControlPanel'
-import useAuthStatusQuery from '../../hooks/useAuthStatusQuery'
+import { useAuthStatusQuery } from '../../hooks/authHooks'
 
 const Admin = () => {
   const { data: authStatus } = useAuthStatusQuery()

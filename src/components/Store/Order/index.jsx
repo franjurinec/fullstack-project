@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
-import useCheckoutSessionQuery from '../../../hooks/useCheckoutSessionQuery'
 import OrderFail from './OrderFail'
 import OrderSuccess from './OrderSuccess'
+import { useCheckoutSessionQuery } from '../../../hooks/checkoutHooks'
 
 const Order = () => {
   const params = useParams()

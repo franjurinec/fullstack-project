@@ -1,6 +1,19 @@
 import { useState } from 'react'
-import useProductsQuery from '../../../../hooks/useProductsQuery'
-import { Table, Thead, Tbody, Tr, Th, Td, chakra } from '@chakra-ui/react'
+import {
+  useProductRemoveMutation,
+  useProductsQuery,
+} from '../../../../hooks/productHooks'
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  chakra,
+  Flex,
+  useToast,
+} from '@chakra-ui/react'
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
 import {
   createColumnHelper,
@@ -9,8 +22,38 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import MiniButton from '../../../common/MiniButton'
 
-function AdminProductsTable() {
+const RowActions = (props) => {
+  const id = props.row.original.id
+
+  const toast = useToast()
+  const { mutate: removeProduct } = useProductRemoveMutation()
+
+  const onEdit = () => {
+    console.log(id)
+  } // TODO: Open edit modal
+
+  const onRemove = () =>
+    removeProduct(id, {
+      onSuccess: () =>
+        toast({
+          title: 'Product removed successfully!',
+          status: 'success',
+        }),
+      onError: () =>
+        toast({ title: 'Failed to remove product!', status: 'error' }),
+    })
+
+  return (
+    <Flex gap={4}>
+      <MiniButton onClick={onEdit}>Edit</MiniButton>
+      <MiniButton onClick={onRemove}>Delete</MiniButton>
+    </Flex>
+  )
+}
+
+const AdminProductsTable = () => {
   const { data, isLoading, error } = useProductsQuery()
   const [sorting, setSorting] = useState([])
 
@@ -21,6 +64,10 @@ function AdminProductsTable() {
     }),
     columnHelper.accessor('price', {
       header: 'Price',
+    }),
+    columnHelper.display({
+      id: 'actions',
+      cell: (props) => <RowActions row={props.row} />,
     }),
   ]
 
@@ -34,6 +81,7 @@ function AdminProductsTable() {
       sorting,
     },
   })
+
   if (isLoading || error) return null
   return (
     <Table>
