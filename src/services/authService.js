@@ -1,13 +1,6 @@
-export const authFetch = (url, options) => {
+export const getAuthHeader = () => {
   const token = localStorage.getItem('token')
-
-  return fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      ...options?.headers,
-    },
-    ...options,
-  })
+  return `Bearer ${token}`
 }
 
 export const authenticate = async (password) => {
@@ -30,7 +23,11 @@ export const deleteAuth = () => {
 }
 
 export const isAuthenticated = async () => {
-  const response = await authFetch('/api/auth/check')
+  const response = await fetch('/api/auth/check', {
+    headers: {
+      Authorization: getAuthHeader(),
+    },
+  })
   const data = await response.json()
   return !!data?.authenticated // boolean return
 }

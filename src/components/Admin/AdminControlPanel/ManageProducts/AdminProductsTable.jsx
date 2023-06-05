@@ -1,19 +1,6 @@
 import { useState } from 'react'
-import {
-  useProductRemoveMutation,
-  useProductsQuery,
-} from '../../../../hooks/productHooks'
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  chakra,
-  Flex,
-  useToast,
-} from '@chakra-ui/react'
+import { useProductsQuery } from '../../../../hooks/productHooks'
+import { Table, Thead, Tbody, Tr, Th, Td, chakra, Flex } from '@chakra-ui/react'
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
 import {
   createColumnHelper,
@@ -24,53 +11,37 @@ import {
 } from '@tanstack/react-table'
 import MiniButton from '../../../common/MiniButton'
 
-const RowActions = (props) => {
-  const id = props.row.original.id
-
-  const toast = useToast()
-  const { mutate: removeProduct } = useProductRemoveMutation()
-
-  const onEdit = () => {
-    console.log(id)
-  } // TODO: Open edit modal
-
-  const onRemove = () =>
-    removeProduct(id, {
-      onSuccess: () =>
-        toast({
-          title: 'Product removed successfully!',
-          status: 'success',
-        }),
-      onError: () =>
-        toast({ title: 'Failed to remove product!', status: 'error' }),
-    })
-
-  return (
-    <Flex gap={4}>
-      <MiniButton onClick={onEdit}>Edit</MiniButton>
-      <MiniButton onClick={onRemove}>Delete</MiniButton>
-    </Flex>
-  )
-}
-
-const AdminProductsTable = () => {
+const AdminProductsTable = ({ onEditProduct, onRemoveProduct }) => {
   const { data, isLoading, error } = useProductsQuery()
-  const [sorting, setSorting] = useState([])
 
+  // Helper for cearing TanStack Table columns
   const columnHelper = createColumnHelper()
   const columns = [
+    // Display 'Product Name' column by accessing the 'name' property for each product
     columnHelper.accessor('name', {
       header: 'Product Name',
     }),
+    // Display 'Price' column by accessing the 'price' property for each product
     columnHelper.accessor('price', {
       header: 'Price',
     }),
+    // Display actions for each product
     columnHelper.display({
       id: 'actions',
-      cell: (props) => <RowActions row={props.row} />,
+      cell: (props) => {
+        const id = props.row.original.id
+        return (
+          <Flex gap={4}>
+            <MiniButton onClick={() => onEditProduct(id)}>Edit</MiniButton>
+            <MiniButton onClick={() => onRemoveProduct(id)}>Delete</MiniButton>
+          </Flex>
+        )
+      },
     }),
   ]
 
+  // TanStack Table main object
+  const [sorting, setSorting] = useState([])
   const table = useReactTable({
     columns,
     data,

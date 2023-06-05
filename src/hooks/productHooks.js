@@ -36,7 +36,9 @@ export const useProductUpdateMutation = () => {
   return useMutation({
     mutationFn: updateProduct,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [PRODUCTS_QUERY_ID] })
+      queryClient.invalidateQueries({
+        queryKey: [PRODUCTS_QUERY_ID],
+      })
     },
   })
 }

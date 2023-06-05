@@ -1,4 +1,4 @@
-import { authFetch } from './authService'
+import { getAuthHeader } from './authService'
 
 export const getProducts = async () => {
   const response = await fetch('/api/products')
@@ -6,14 +6,16 @@ export const getProducts = async () => {
 }
 
 export const getProduct = async (id) => {
+  if (!id) return null
   const response = await fetch(`/api/products/${id}`)
   return await response.json()
 }
 
 export const createProduct = async (product) => {
-  const response = await authFetch(`/api/products`, {
+  const response = await fetch(`/api/products`, {
     method: 'POST',
     headers: {
+      Authorization: getAuthHeader(),
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(product),
@@ -21,10 +23,12 @@ export const createProduct = async (product) => {
   return await response.json()
 }
 
-export const updateProduct = async (id, product) => {
-  const response = await authFetch(`/api/products/${id}`, {
+export const updateProduct = async ({ id, product }) => {
+  console.log(JSON.stringify(product))
+  const response = await fetch(`/api/products/${id}`, {
     method: 'PUT',
     headers: {
+      Authorization: getAuthHeader(),
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(product),
@@ -33,6 +37,9 @@ export const updateProduct = async (id, product) => {
 }
 
 export const deactivateProduct = async (id) => {
-  const response = await authFetch(`/api/products/${id}`, { method: 'DELETE' })
+  const response = await fetch(`/api/products/${id}`, {
+    method: 'DELETE',
+    headers: { Authorization: getAuthHeader() },
+  })
   return await response.json()
 }

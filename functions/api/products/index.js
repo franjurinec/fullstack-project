@@ -10,6 +10,7 @@ export const simpleProduct = (product) => ({
     currency: product.default_price.currency,
   }).format(product.default_price.unit_amount / 100),
   priceId: product.default_price.id,
+  priceNumerical: product.default_price.unit_amount / 100,
 })
 
 // GET /api/products

@@ -19,6 +19,12 @@ export const useCartStore = create(
         set((state) => {
           delete state.cart[id]
         }),
+      removeAll: () => {
+        console.log('removing all')
+        set((state) => {
+          state.cart = {}
+        })
+      },
       decrementById: (id) =>
         set((state) => {
           if (state.cart[id]?.quantity > 1) state.cart[id].quantity -= 1
