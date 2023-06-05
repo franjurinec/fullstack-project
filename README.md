@@ -21,3 +21,4 @@
 - Admin Page Scaffolding: 3h
 - Admin Auth Middleware: 2h
 - Admin Product Table: 3h
+- API Extension: 2h

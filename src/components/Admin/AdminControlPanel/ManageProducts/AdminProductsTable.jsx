@@ -10,19 +10,20 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 
-const columnHelper = createColumnHelper()
-const columns = [
-  columnHelper.accessor('name', {
-    header: 'Product Name',
-  }),
-  columnHelper.accessor('price', {
-    header: 'Price',
-  }),
-]
-
 function AdminProductsTable() {
   const { data, isLoading, error } = useProductsQuery()
   const [sorting, setSorting] = useState([])
+
+  const columnHelper = createColumnHelper()
+  const columns = [
+    columnHelper.accessor('name', {
+      header: 'Product Name',
+    }),
+    columnHelper.accessor('price', {
+      header: 'Price',
+    }),
+  ]
+
   const table = useReactTable({
     columns,
     data,

@@ -12,9 +12,9 @@ import Stripe from 'stripe'
 //   priceId: product.default_price.id,
 // })
 
-export const onRequest = async ({ env, params }) => {
+export const onRequestGet = async ({ env, params }) => {
   const stripe = new Stripe(env.STRIPE_API_KEY)
-  const sessionId = params.session
+  const sessionId = params.id
 
   const session = await stripe.checkout.sessions.retrieve(sessionId)
 
