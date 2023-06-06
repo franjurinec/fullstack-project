@@ -7,7 +7,7 @@ const AdminLogin = () => {
   const toast = useToast()
 
   const showAuthError = () =>
-    toast({ title: 'Authentication error!', status: 'error' })
+    toast({ title: 'Invalid password!', status: 'error' })
 
   const onSubmit = (values) =>
     authenticate(values.password, { onError: showAuthError })

@@ -18,15 +18,15 @@ const PasswordForm = ({ onSubmit }) => {
   return (
     <Box w="xs">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isInvalid={errors.name}>
+        <FormControl isInvalid={errors.password}>
           <Input
             id="password"
             placeholder="Password"
             type="password"
-            {...register('password')}
+            {...register('password', { required: 'Admin password required.' })}
           />
           <FormErrorMessage>
-            {errors.name && errors.name.message}
+            {errors.password && errors.password.message}
           </FormErrorMessage>
         </FormControl>
         <Center>
