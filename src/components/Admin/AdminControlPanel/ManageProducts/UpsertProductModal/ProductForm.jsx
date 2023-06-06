@@ -71,7 +71,6 @@ const ProductForm = ({ register, errors, handleSubmit, onSubmit, formId }) => {
         <FormLabel htmlFor="price">Price in EUR</FormLabel>
         <Input
           id="price"
-          isRequired
           type="number"
           placeholder="100.00"
           {...register('price', {
