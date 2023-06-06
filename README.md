@@ -28,3 +28,4 @@
 - Form Validation: 3h
 - Cypress Setup and Config: 3h
 - Misc. Improvements: 1h
+- CI GitHub Actions Setup: 1h
