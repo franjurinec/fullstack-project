@@ -26,3 +26,4 @@
 - New Service Functions, Hooks, Admin Features: 2h
 - Admin Product Creation and Update Forms: 5h
 - Form Validation: 3h
+- Cypress Setup and Config: 3h

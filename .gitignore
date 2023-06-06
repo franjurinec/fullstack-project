@@ -28,3 +28,7 @@ dist-ssr
 
 # HTTP Test Files
 *.http
+
+# Cypress Large Files
+cypress/videos
+cypress/screenshots
