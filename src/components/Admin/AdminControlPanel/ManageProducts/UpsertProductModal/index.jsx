@@ -1,5 +1,4 @@
 import {
-  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -9,9 +8,9 @@ import {
   ModalOverlay,
   useToast,
 } from '@chakra-ui/react'
-import MiniButton from '../../../../common/MiniButton'
+import Button from '../../../../common/Button'
 import { useForm } from 'react-hook-form'
-import AddProductForm from './AddProductForm'
+import ProductForm from './ProductForm'
 import { useEffect } from 'react'
 import {
   useProductCreateMutation,
@@ -105,6 +104,7 @@ const UpsertProductModal = ({ productId, setProductId, isOpen, onClose }) => {
       onClose={onClose}
       onCloseComplete={onCloseComplete}
       isCentered
+      closeOnOverlayClick={false}
     >
       <ModalOverlay />
       <ModalContent>
@@ -113,7 +113,7 @@ const UpsertProductModal = ({ productId, setProductId, isOpen, onClose }) => {
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <AddProductForm
+          <ProductForm
             formId={PRODUCT_FORM_ID}
             register={register}
             errors={errors}
@@ -122,16 +122,15 @@ const UpsertProductModal = ({ productId, setProductId, isOpen, onClose }) => {
           />
         </ModalBody>
         <ModalFooter>
-          <Flex gap={4}>
-            <MiniButton onClick={onClose}>Cancel</MiniButton>
-            <MiniButton
-              type="submit"
-              form={PRODUCT_FORM_ID}
-              isLoading={isSubmitting}
-            >
-              Submit
-            </MiniButton>
-          </Flex>
+          <Button
+            mt={4}
+            flexGrow={1}
+            type="submit"
+            form={PRODUCT_FORM_ID} // Submit button outside form, using id for reference
+            isLoading={isSubmitting}
+          >
+            Submit
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

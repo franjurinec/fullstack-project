@@ -39,7 +39,7 @@ const ProductDetail = () => {
       </Flex>
       <Flex direction="column" gap={4}>
         <Heading>{product.name}</Heading>
-        <Text>{product.description}</Text>
+        <Text>{product.description ?? 'No description available.'}</Text>
         <Heading>{product.price}</Heading>
         <Button onClick={onAddToCartClicked}>Add to cart</Button>
       </Flex>

@@ -25,3 +25,4 @@
 - Hooks Refactor: 1h
 - New Service Functions, Hooks, Admin Features: 2h
 - Admin Product Creation and Update Forms: 5h
+- Form Validation: 3h
