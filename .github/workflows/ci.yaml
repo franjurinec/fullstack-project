@@ -22,6 +22,7 @@ jobs:
       - run: npm run lint
       - uses: cypress-io/github-action@v5
         with:
+          install: false
           start: npx wrangler pages dev
             --compatibility-date=2023-05-18
             --binding STRIPE_API_KEY="${{secrets.STRIPE_API_KEY}}"

@@ -29,3 +29,4 @@
 - Cypress Setup and Config: 3h
 - Misc. Improvements: 1h
 - CI GitHub Actions Setup: 1h
+- CI Debugging and Tweaks: 1h
