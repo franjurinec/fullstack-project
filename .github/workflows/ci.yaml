@@ -31,3 +31,7 @@ jobs:
             -- vite
           wait-on: 'http://127.0.0.1:8788'
           wait-on-timeout: 120
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
