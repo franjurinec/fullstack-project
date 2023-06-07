@@ -48,7 +48,7 @@ export const onRequestDelete = async ({ env, params, data }) => {
   const productId = params.id
 
   try {
-    // Stripe API encourages deactivating instead of deleting products
+    // Stripe API encourages deactivating instead of deleting
     const result = await stripe.products.update(productId, { active: false })
     return Response.json(result)
   } catch (err) {
