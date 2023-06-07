@@ -1,10 +1,6 @@
 /// <reference types="Cypress" />
 
 describe('store', () => {
-  before(() =>
-    cy.request('http://127.0.0.1:8788/hello').its('status').should('eq', 200)
-  )
-
   beforeEach(() => cy.visit('http://127.0.0.1:8788/'))
 
   it('displays store home elements (header, product cards)', () => {
