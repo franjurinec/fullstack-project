@@ -4,10 +4,37 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { useProductQuery } from '../../../../../hooks/productHooks'
 
-const ProductForm = ({ register, errors, handleSubmit, onSubmit, formId }) => {
+const EditProductForm = ({
+  productId,
+  formId,
+  formHook: {
+    register,
+    formState: { errors },
+    reset,
+  },
+  onSubmit,
+}) => {
+  const { data: product, isLoading, error } = useProductQuery(productId)
+
+  useEffect(() => {
+    if (!productId || !product) return
+    reset({
+      id: productId,
+      name: product.name,
+      description: product.description,
+      image: product.image,
+      price: product.priceNumerical,
+    })
+  }, [productId, product, reset])
+
+  if (isLoading) return null
+  if (error) return 'Error while fetching product information.'
+
   return (
-    <form id={formId} onSubmit={handleSubmit(onSubmit)}>
+    <form id={formId} onSubmit={onSubmit}>
       <FormControl isInvalid={errors.name}>
         <FormLabel htmlFor="name">Name</FormLabel>
         <Input
@@ -84,4 +111,4 @@ const ProductForm = ({ register, errors, handleSubmit, onSubmit, formId }) => {
   )
 }
 
-export default ProductForm
+export default EditProductForm

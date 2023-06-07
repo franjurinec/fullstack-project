@@ -1,6 +1,20 @@
 import { useState } from 'react'
-import { useProductsQuery } from '../../../../hooks/productHooks'
-import { Table, Thead, Tbody, Tr, Th, Td, chakra, Flex } from '@chakra-ui/react'
+import {
+  useProductRemoveMutation,
+  useProductsQuery,
+} from '../../../../hooks/productHooks'
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  chakra,
+  Flex,
+  useToast,
+  useDisclosure,
+} from '@chakra-ui/react'
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
 import {
   createColumnHelper,
@@ -10,8 +24,38 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import MiniButton from '../../../common/MiniButton'
+import EditProductModal from './EditProductModal'
 
-const AdminProductsTable = ({ onEditProduct, onRemoveProduct }) => {
+const RowActions = ({ id }) => {
+  // Edit Action Modal
+  const editDisclosure = useDisclosure()
+
+  // Remove Action
+  const toast = useToast()
+  const { mutate: removeProduct } = useProductRemoveMutation()
+  const onRemoveProduct = () =>
+    removeProduct(id, {
+      onSuccess: () =>
+        toast({
+          title: 'Product removed successfully!',
+          status: 'success',
+        }),
+    })
+
+  return (
+    <Flex gap={4}>
+      <MiniButton onClick={editDisclosure.onOpen}>Edit</MiniButton>
+      <EditProductModal
+        isOpen={editDisclosure.isOpen}
+        onClose={editDisclosure.onClose}
+        productId={id}
+      />
+      <MiniButton onClick={onRemoveProduct}>Delete</MiniButton>
+    </Flex>
+  )
+}
+
+const AdminProductsTable = () => {
   const { data, isLoading, error } = useProductsQuery()
 
   // Helper for cearing TanStack Table columns
@@ -28,15 +72,7 @@ const AdminProductsTable = ({ onEditProduct, onRemoveProduct }) => {
     // Display actions for each product
     columnHelper.display({
       id: 'actions',
-      cell: (props) => {
-        const id = props.row.original.id
-        return (
-          <Flex gap={4}>
-            <MiniButton onClick={() => onEditProduct(id)}>Edit</MiniButton>
-            <MiniButton onClick={() => onRemoveProduct(id)}>Delete</MiniButton>
-          </Flex>
-        )
-      },
+      cell: (props) => <RowActions id={props.row.original.id} />,
     }),
   ]
 
