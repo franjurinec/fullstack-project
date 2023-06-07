@@ -33,3 +33,4 @@
 - Auth Refetch Policy Update: 1h
 - Improved Error Handling: 3h
 - Codebase Cleanup and Refactoring: 3h
+- Cypress Debugging: 1h
