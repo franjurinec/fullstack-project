@@ -1,6 +1,6 @@
 export const getAuthHeader = () => {
   const token = localStorage.getItem('token')
-  return `Bearer ${token}`
+  return token ? `Bearer ${token}` : undefined
 }
 
 export const authenticate = async (password) => {
@@ -12,9 +12,13 @@ export const authenticate = async (password) => {
     body: JSON.stringify({ password }),
   })
 
-  if (response.status !== 200) throw new Error('Authentication error!')
+  if (response.status === 401) throw new Error('Invalid password!')
+  if (!response.ok) throw new Error('An error has occured.')
 
-  const { token } = await response.json()
+  const { token } = await response.json().catch(() => {
+    throw new Error('Failed to process server response.')
+  })
+
   localStorage.setItem('token', token)
 }
 
@@ -28,6 +32,8 @@ export const isAuthenticated = async () => {
       Authorization: getAuthHeader(),
     },
   })
-  const data = await response.json()
-  return !!data?.authenticated // boolean return
+
+  if (!response.ok) throw new Error('An error has occured.')
+
+  return await response.json((data) => data.authenticated)
 }

@@ -2,13 +2,15 @@ import { getAuthHeader } from './authService'
 
 export const getProducts = async () => {
   const response = await fetch('/api/products')
-  return await response.json()
+  if (!response.ok) throw new Error('An error has occured.')
+  return response.json()
 }
 
 export const getProduct = async (id) => {
-  if (!id) return null
+  if (!id) throw new Error('Product ID not specified.')
   const response = await fetch(`/api/products/${id}`)
-  return await response.json()
+  if (!response.ok) throw new Error('An error has occured.')
+  return response.json()
 }
 
 export const createProduct = async (product) => {
@@ -20,11 +22,14 @@ export const createProduct = async (product) => {
     },
     body: JSON.stringify(product),
   })
-  return await response.json()
+
+  if (!response.ok) throw new Error('An error has occured.')
+
+  return response.json()
 }
 
 export const updateProduct = async ({ id, product }) => {
-  console.log(JSON.stringify(product))
+  if (!id) throw new Error('Product ID not specified.')
   const response = await fetch(`/api/products/${id}`, {
     method: 'PUT',
     headers: {
@@ -33,7 +38,10 @@ export const updateProduct = async ({ id, product }) => {
     },
     body: JSON.stringify(product),
   })
-  return await response.json()
+
+  if (!response.ok) throw new Error('An error has occured.')
+
+  return response.json()
 }
 
 export const deactivateProduct = async (id) => {
@@ -41,5 +49,8 @@ export const deactivateProduct = async (id) => {
     method: 'DELETE',
     headers: { Authorization: getAuthHeader() },
   })
-  return await response.json()
+
+  if (!response.ok) throw new Error('An error has occured.')
+
+  return response.json()
 }

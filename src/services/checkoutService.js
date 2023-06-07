@@ -11,11 +11,14 @@ export const postCheckout = async (items) => {
       cancel_url: 'http://127.0.0.1:8788/',
     }),
   })
-  const data = await response.json()
-  return data.sessionUrl
+
+  if (!response.ok) throw new Error('An error has occured.')
+
+  return response.json().then((data) => data.sessionUrl)
 }
 
 export const getCheckoutSession = async (id) => {
   const response = await fetch(`/api/checkout/${id}`)
-  return await response.json()
+  if (!response.ok) throw new Error('An error has occured.')
+  return response.json()
 }

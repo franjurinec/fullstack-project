@@ -15,6 +15,7 @@ export const onRequestGet = async ({ env, params }) => {
 // PUT /api/products/[:id]
 export const onRequestPut = async ({ env, params, request, data }) => {
   if (!data.authenticated) return new Response('Unauthorized.', { status: 401 })
+
   const stripe = new Stripe(env.STRIPE_API_KEY)
   const productId = params.id
   const newProductData = await request.json()
@@ -42,10 +43,12 @@ export const onRequestPut = async ({ env, params, request, data }) => {
 // DELETE /api/products/[:id]
 export const onRequestDelete = async ({ env, params, data }) => {
   if (!data.authenticated) return new Response('Unauthorized.', { status: 401 })
+
   const stripe = new Stripe(env.STRIPE_API_KEY)
   const productId = params.id
 
   try {
+    // Stripe API encourages deactivating instead of deleting products
     const result = await stripe.products.update(productId, { active: false })
     return Response.json(result)
   } catch (err) {

@@ -8,5 +8,7 @@ export const onRequestPost = async ({ request, env }) => {
       ? await jwt.sign({ admin: true }, env.SECRET)
       : undefined
 
-  return token ? Response.json({ token }) : new Response(null, { status: 401 })
+  return token
+    ? Response.json({ token })
+    : new Response('Unauthorized.', { status: 401 })
 }
