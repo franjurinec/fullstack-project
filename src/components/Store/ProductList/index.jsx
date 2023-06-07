@@ -8,7 +8,12 @@ const ProductList = () => {
   if (isLoading) return null
   if (error) return 'An error occured when loading products!'
   return (
-    <Flex gap={8} wrap="wrap" justifyContent="center">
+    <Flex
+      data-test-class={'product-list'}
+      gap={8}
+      wrap="wrap"
+      justifyContent="center"
+    >
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

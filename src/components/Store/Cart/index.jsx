@@ -24,7 +24,7 @@ const Cart = () => {
     )
 
   return (
-    <Box>
+    <Box data-test-class={'cart-display'}>
       {Object.keys(cartItems).length ? (
         <>
           <Flex flexDir="column" gap={4}>

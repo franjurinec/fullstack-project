@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router-dom'
 const ProductCard = ({ product }) => {
   return (
     <Link
+      data-test-class={'product-card'}
       as={RouterLink}
       to={`/product/${product.id}`}
       style={{ textDecoration: 'none' }}
