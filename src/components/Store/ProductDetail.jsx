@@ -10,17 +10,12 @@ import Button from '../common/Button'
 import { useProductQuery } from '../../hooks/productHooks'
 import { useParams } from 'react-router-dom'
 import { useCartStore } from '../../store/cartStore'
-import { useEffect } from 'react'
 
 const ProductDetail = () => {
   const params = useParams()
   const { data: product, isLoading, error } = useProductQuery(params.id)
 
   const toast = useToast()
-  useEffect(() => {
-    if (error)
-      toast({ title: 'Failed to load selected product.', status: 'error' })
-  }, [error])
 
   const addToCart = useCartStore((state) => state.add)
   const onAddToCartClicked = () => {

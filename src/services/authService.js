@@ -35,5 +35,5 @@ export const isAuthenticated = async () => {
 
   if (!response.ok) throw new Error('An error has occured.')
 
-  return await response.json((data) => data.authenticated)
+  return await response.json().then((data) => data.authenticated)
 }

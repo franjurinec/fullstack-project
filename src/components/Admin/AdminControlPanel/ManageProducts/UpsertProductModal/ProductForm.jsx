@@ -4,11 +4,8 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
 
 const ProductForm = ({ register, errors, handleSubmit, onSubmit, formId }) => {
-  useEffect(() => console.log(errors), [errors])
-
   return (
     <form id={formId} onSubmit={handleSubmit(onSubmit)}>
       <FormControl isInvalid={errors.name}>
