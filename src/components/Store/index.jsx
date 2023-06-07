@@ -1,5 +1,5 @@
 import { Box, Container } from '@chakra-ui/react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Cart from './Cart'
 import Header from './Header'
 import Order from './Order'
@@ -15,6 +15,7 @@ const Store = () => (
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/order/:id" element={<Order />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Container>
   </Box>

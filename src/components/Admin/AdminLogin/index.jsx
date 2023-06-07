@@ -6,8 +6,8 @@ const AdminLogin = () => {
   const { mutate: authenticate } = useAuthCreateMutation()
   const toast = useToast()
 
-  const showAuthError = () =>
-    toast({ title: 'Invalid password!', status: 'error' })
+  const showAuthError = (error) =>
+    toast({ title: error.message, status: 'error' })
 
   const onSubmit = (values) =>
     authenticate(values.password, { onError: showAuthError })
