@@ -31,3 +31,5 @@
 - CI GitHub Actions Setup: 1h
 - CI Debugging and Tweaks: 1h
 - Auth Refetch Policy Update: 1h
+- Improved Error Handling: 3h
+- Codebase Cleanup and Refactoring: 3h
