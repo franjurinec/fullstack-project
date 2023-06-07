@@ -1,21 +1,17 @@
 import jwt from '@tsndr/cloudflare-worker-jwt'
 
-export async function onRequest({ request, env, data, next }) {
-  try {
-    const authHeader = request.headers.get('authorization') ?? ''
-    const token = authHeader.startsWith('Bearer ')
-      ? authHeader.substring(7, authHeader.length)
-      : ''
+const verifyAdmin = async (request, secret, data) => {
+  const authHeader = request.headers.get('authorization')
+  if (!authHeader) return
+  const token = authHeader.substring('Bearer '.length)
+  data.authenticated = await jwt.verify(token, secret).catch(() => false)
+}
 
-    try {
-      const isValid = await jwt.verify(token, env.SECRET)
-      if (!isValid) throw new Error('Invalid token!')
-      data.authenticated = true
-    } catch (_) {
-      /* Ignore error */
-    }
-    return await next()
-  } catch (err) {
-    return new Response(`${err.message}\n${err.stack}`, { status: 500 })
-  }
+export const onRequest = async ({ request, env, data, next }) => {
+  await verifyAdmin(request, env.SECRET, data)
+
+  return next().catch(
+    // Catch all server errors
+    () => new Response('A server error has occured.', { status: 500 })
+  )
 }
