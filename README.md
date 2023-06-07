@@ -35,3 +35,4 @@
 - Codebase Cleanup and Refactoring: 3h
 - Cypress Debugging: 1h
 - Added Some E2E Tests: 1h
+- CI Debugging: 1h
