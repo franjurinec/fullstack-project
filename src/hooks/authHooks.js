@@ -11,8 +11,6 @@ export const useAuthStatusQuery = () =>
   useQuery({
     queryKey: [AUTH_QUERY_ID],
     queryFn: isAuthenticated,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
   })
 
 export const useAuthCreateMutation = () => {

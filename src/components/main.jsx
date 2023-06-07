@@ -7,12 +7,21 @@ import Admin from './Admin'
 import Store from './Store'
 import theme from '../theme'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
+      <ChakraProvider
+        theme={theme}
+        toastOptions={{ defaultOptions: { duration: 2000 } }}
+      >
         <BrowserRouter>
           <Routes>
             <Route path="*" element={<Store />} />
