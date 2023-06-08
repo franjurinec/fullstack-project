@@ -42,7 +42,7 @@ describe('product details', () => {
     cy.contains('Added to cart!')
     cy.get('[data-test-id="header-cart"]').contains('(1)')
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(1000) // wait for images to load before screenshot
+    cy.wait(1500) // wait for images to load before screenshot
     cy.screenshot()
   })
 })
@@ -60,12 +60,12 @@ describe('cart', () => {
   it('displays cart contents', () => {
     cy.get('[data-test-class="cart-display"]').should('be.visible')
     cy.contains('Checkout').should('be.visible')
-    cy.screenshot()
   })
 
   it('allows changing the number of items', () => {
     cy.contains('+1').click()
     cy.get('[data-test-class="cart-quantity"]').contains('2')
+    cy.screenshot()
     cy.contains('-1').click()
     cy.get('[data-test-class="cart-quantity"]').contains('1')
   })
