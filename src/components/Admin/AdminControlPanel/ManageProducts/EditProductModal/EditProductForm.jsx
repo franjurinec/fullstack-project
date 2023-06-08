@@ -34,7 +34,7 @@ const EditProductForm = ({
   if (error) return 'Error while fetching product information.'
 
   return (
-    <form id={formId} onSubmit={onSubmit}>
+    <form data-test-id={'product-edit-form'} id={formId} onSubmit={onSubmit}>
       <FormControl isInvalid={errors.name}>
         <FormLabel htmlFor="name">Name</FormLabel>
         <Input

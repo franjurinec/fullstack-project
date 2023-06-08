@@ -15,7 +15,7 @@ describe('admin portal', () => {
   it('add product modal', () => {
     cy.contains('+ New Product').click()
     cy.contains('Add Product')
-    cy.contains('Name')
+    cy.get('[data-test-id="product-add-form"]').should('be.visible')
     cy.contains('Submit')
     cy.screenshot()
   })
@@ -23,7 +23,7 @@ describe('admin portal', () => {
   it('edit product modal', () => {
     cy.contains('Edit').first().click()
     cy.contains('Edit Product')
-    cy.contains('Name')
+    cy.get('[data-test-id="product-edit-form"]').should('be.visible')
     cy.contains('Submit')
     cy.screenshot()
   })

@@ -14,7 +14,7 @@ const AddProductForm = ({
   onSubmit,
 }) => (
   <form id={formId} onSubmit={onSubmit}>
-    <FormControl isInvalid={errors.name}>
+    <FormControl data-test-id={'product-add-form'} isInvalid={errors.name}>
       <FormLabel htmlFor="name">Name</FormLabel>
       <Input
         id="name"
