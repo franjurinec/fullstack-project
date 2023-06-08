@@ -1,13 +1,15 @@
-import { Box, Center, Flex, Heading, Link } from '@chakra-ui/react'
+import { Center, Container, Flex, Heading, Link } from '@chakra-ui/react'
 import Button from '../../common/Button'
 import CartItem from './CartItem'
 import { postCheckout } from '../../../services/checkoutService'
 import { useCartStore } from '../../../store/cartStore'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
 const Cart = () => {
   const cartItems = useCartStore((state) => state.cart)
+
+  useEffect(() => console.log(cartItems), [cartItems])
 
   const items = useMemo(
     () =>
@@ -24,7 +26,7 @@ const Cart = () => {
     )
 
   return (
-    <Box data-test-class={'cart-display'}>
+    <Container maxW={'container.md'} data-test-class={'cart-display'}>
       {Object.keys(cartItems).length ? (
         <>
           <Flex flexDir="column" gap={4}>
@@ -32,9 +34,9 @@ const Cart = () => {
               <CartItem key={id} productId={id} quantity={info.quantity} />
             ))}
           </Flex>
-          <Button mt={4} onClick={onCheckout}>
-            Checkout
-          </Button>
+          <Flex mt={12} justifyContent={'flex-end'}>
+            <Button onClick={onCheckout}>Checkout</Button>
+          </Flex>
         </>
       ) : (
         <Center flexDir="column">
@@ -51,7 +53,7 @@ const Cart = () => {
           </Link>
         </Center>
       )}
-    </Box>
+    </Container>
   )
 }
 
