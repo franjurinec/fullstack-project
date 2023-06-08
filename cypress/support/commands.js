@@ -24,10 +24,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('getAdminTestPass', () => {
-  return cy.fixture('admin.json').its('testPassword')
-})
-
 Cypress.Commands.add('login', (password) => {
   cy.request('POST', 'http://127.0.0.1:8788/api/auth', { password })
     .its('body.token')
@@ -38,4 +34,11 @@ Cypress.Commands.add('getLoginToken', (password) => {
   return cy
     .request('POST', 'http://127.0.0.1:8788/api/auth', { password })
     .its('body.token')
+})
+
+Cypress.Commands.add('ensureOneProduct', () => {
+  return cy
+    .request('http://127.0.0.1:8788/api/products')
+    .its('body')
+    .should('have.length.at.least', 1)
 })

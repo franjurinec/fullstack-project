@@ -39,7 +39,7 @@ const Header = () => {
           </Link>
         </Flex>
         <Link as={RouterLink} to="/cart" style={{ textDecoration: 'none' }}>
-          <Heading size="3xl" fontWeight="thin">
+          <Heading data-test-id={'header-cart'} size="3xl" fontWeight="thin">
             CART {!!itemCount && `(${itemCount})`}
           </Heading>
         </Link>

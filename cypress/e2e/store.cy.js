@@ -1,13 +1,7 @@
 /// <reference types="Cypress" />
 
 describe('store', () => {
-  before(() => {
-    // TODO: Add or activate test product in Stripe
-  })
-
-  after(() => {
-    // TODO: Deactivate test product in Stripe
-  })
+  before(cy.ensureOneProduct)
 
   beforeEach(() => cy.visit('http://127.0.0.1:8788/'))
 
@@ -30,7 +24,32 @@ describe('store', () => {
   })
 })
 
+describe('product details', () => {
+  beforeEach(() => {
+    cy.visit('http://127.0.0.1:8788')
+    cy.get('[data-test-class="product-card"]').first().click()
+  })
+
+  it('displays product details', () => {
+    cy.get('[data-test-id="product-name"]').should('be.visible')
+    cy.get('[data-test-id="product-description"]').should('be.visible')
+    cy.get('[data-test-id="product-price"]').should('be.visible')
+    cy.get('[data-test-id="product-image"]').should('be.visible')
+  })
+
+  it('allows adding to cart', () => {
+    cy.contains('Add to cart').click()
+    cy.contains('Added to cart!')
+    cy.get('[data-test-id="header-cart"]').contains('(1)')
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(1000) // wait for images to load before screenshot
+    cy.screenshot()
+  })
+})
+
 describe('cart', () => {
+  before(cy.ensureOneProduct)
+
   beforeEach(() => {
     cy.visit('http://127.0.0.1:8788')
     cy.get('[data-test-class="product-card"]').first().click()
@@ -41,7 +60,17 @@ describe('cart', () => {
   it('displays cart contents', () => {
     cy.get('[data-test-class="cart-display"]').should('be.visible')
     cy.contains('Checkout').should('be.visible')
-    cy.contains('+1').should('be.visible')
     cy.screenshot()
+  })
+
+  it('allows changing the number of items', () => {
+    cy.contains('+1').click()
+    cy.get('[data-test-class="cart-quantity"]').contains('2')
+    cy.contains('-1').click()
+    cy.get('[data-test-class="cart-quantity"]').contains('1')
+  })
+
+  it('allows successful checkout', () => {
+    //TODO
   })
 })

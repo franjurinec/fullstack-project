@@ -20,7 +20,11 @@ const CartItemControls = ({ quantity, onIncrement, onDecrement }) => (
       justifyContent="center"
       alignItems="center"
     >
-      <Text fontSize="lg" fontWeight="semibold">
+      <Text
+        data-test-class={'cart-quantity'}
+        fontSize="lg"
+        fontWeight="semibold"
+      >
         {quantity}
       </Text>
     </Flex>

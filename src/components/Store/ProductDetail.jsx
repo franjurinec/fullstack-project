@@ -32,13 +32,19 @@ const ProductDetail = () => {
     <Flex data-test-class={'product-details'} gap={16} wrap="wrap">
       <Flex direction="column" width="xl">
         <AspectRatio ratio={1.1}>
-          <Image src={product.image} borderRadius="lg" />
+          <Image
+            data-test-id={'product-image'}
+            src={product.image}
+            borderRadius="lg"
+          />
         </AspectRatio>
       </Flex>
       <Flex direction="column" gap={4}>
-        <Heading>{product.name}</Heading>
-        <Text>{product.description ?? 'No description available.'}</Text>
-        <Heading>{product.price}</Heading>
+        <Heading data-test-id={'product-name'}>{product.name}</Heading>
+        <Text data-test-id={'product-description'}>
+          {product.description ?? 'No description available.'}
+        </Text>
+        <Heading data-test-id={'product-price'}>{product.price}</Heading>
         <Button onClick={onAddToCartClicked}>Add to cart</Button>
       </Flex>
     </Flex>
