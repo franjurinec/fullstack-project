@@ -1,3 +1,33 @@
+## Tech Overview
+
+- Frontend
+  - React Frontend
+  - ChakraUI for UI components
+  - TanStack Query (React Query) for data queries and mutations
+  - TanStack Table for data tables
+  - React Hook Form for form control and client-side validation
+  - Zustand for state management
+    - immer for mutations
+    - localStorage for persistence
+  - Vite + SWC for Frontend Building
+- Backend
+  - Clouflare Functions (Edge)
+    - Wrangler v3 for Local Serving
+    - CRUD operations
+    - Auth operations
+  - StripeAPI integration
+    - Used as main database
+    - Full checkout functionality
+  - JWT-based admin auth and protected routes
+- Other
+  - ESLint for linting
+  - Prettier for formatting
+  - Cypress for E2E Frontend and API tests
+  - CI via GitHub Actions
+    - Linting
+    - E2E Tests
+  - CD via Cloudflare Pages
+
 ## Timekeeping
 
 - Tooling choice: 2h
