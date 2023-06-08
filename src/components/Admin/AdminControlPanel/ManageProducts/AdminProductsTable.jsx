@@ -91,7 +91,7 @@ const AdminProductsTable = () => {
 
   if (isLoading || error) return null
   return (
-    <Table>
+    <Table data-test-id={'admin-table'}>
       <Thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <Tr key={headerGroup.id}>

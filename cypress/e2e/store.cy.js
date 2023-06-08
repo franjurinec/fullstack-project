@@ -5,7 +5,7 @@ describe('store', () => {
 
   beforeEach(() => cy.visit('http://127.0.0.1:8788/'))
 
-  it('displays store home elements (header, product cards)', () => {
+  it('displays store elements', () => {
     cy.get('header').should('be.visible')
     cy.get('[data-test-class="product-list"]').should('be.visible')
     // eslint-disable-next-line cypress/no-unnecessary-waiting
@@ -70,7 +70,10 @@ describe('cart', () => {
     cy.get('[data-test-class="cart-quantity"]').contains('1')
   })
 
-  it('allows successful checkout', () => {
-    //TODO
+  it('allows Stripe checkout', () => {
+    cy.contains('Checkout').click()
+    cy.origin('https://checkout.stripe.com', () =>
+      cy.url().should('include', 'checkout.stripe.com')
+    )
   })
 })

@@ -3,13 +3,14 @@
 - Frontend
   - React Frontend
   - ChakraUI for UI components
-  - TanStack Query (React Query) for data queries and mutations
-  - TanStack Table for data tables
+  - React Router for routing
   - React Hook Form for form control and client-side validation
+  - TanStack Query (React Query) for backend queries and mutations
+  - TanStack Table for data tables
   - Zustand for state management
     - immer for mutations
     - localStorage for persistence
-  - Vite + SWC for Frontend Building
+  - Vite + SWC for dev server and production build
 - Backend
   - Clouflare Functions (Edge)
     - Wrangler v3 for Local Serving
@@ -70,4 +71,4 @@
 - Extended E2E Testing: 3h
 - UI Improvements: 2h
 - API Changes: 1h
-- Extended E2E Testing 1h
+- Extended E2E Testing 2h

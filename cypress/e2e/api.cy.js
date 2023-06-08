@@ -48,7 +48,6 @@ describe('admin api', () => {
     })
   })
 
-  // Needs to use 'function' syntax to access 'this'
   it('passes the auth check', function () {
     cy.request({
       url: 'http://127.0.0.1:8788/api/auth/check',

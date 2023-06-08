@@ -35,10 +35,15 @@ const EditProductModal = ({ productId, isOpen, onClose }) => {
   })
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} onCloseComplete={formHook.reset}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      onCloseComplete={formHook.reset}
+      closeOnOverlayClick={false}
+    >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Add Product</ModalHeader>
+        <ModalHeader>Edit Product</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <AddProductForm
