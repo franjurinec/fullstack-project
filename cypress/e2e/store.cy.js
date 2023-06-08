@@ -1,6 +1,14 @@
 /// <reference types="Cypress" />
 
 describe('store', () => {
+  before(() => {
+    // TODO: Add or activate test product in Stripe
+  })
+
+  after(() => {
+    // TODO: Deactivate test product in Stripe
+  })
+
   beforeEach(() => cy.visit('http://127.0.0.1:8788/'))
 
   it('displays store home elements (header, product cards)', () => {
