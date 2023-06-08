@@ -1,5 +1,7 @@
+const LS_TOKEN_KEY = 'fj-admin-token'
+
 export const getAuthHeader = () => {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem(LS_TOKEN_KEY)
   return token ? `Bearer ${token}` : undefined
 }
 
@@ -19,11 +21,11 @@ export const authenticate = async (password) => {
     throw new Error('Failed to process server response.')
   })
 
-  localStorage.setItem('token', token)
+  localStorage.setItem(LS_TOKEN_KEY, token)
 }
 
 export const deleteAuth = () => {
-  localStorage.removeItem('token')
+  localStorage.removeItem(LS_TOKEN_KEY)
 }
 
 export const isAuthenticated = async () => {
