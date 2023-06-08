@@ -36,3 +36,6 @@
 - Cypress Debugging: 1h
 - Added Some E2E Tests: 1h
 - CI Debugging: 1h
+- Minor Improvements: 1h
+- Extended E2E Testing: 3h
+- UI Improvements: 2h
