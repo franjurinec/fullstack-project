@@ -18,20 +18,11 @@ const EditProductModal = ({ productId, isOpen, onClose }) => {
   const formHook = useForm()
 
   const { mutate: editProduct } = useProductUpdateMutation()
-  const productFromValues = (values) => ({
-    name: values.name,
-    description: values.description,
-    default_price_data: {
-      currency: 'EUR',
-      unit_amount: Math.round(values.price * 100),
-    },
-    images: [values.image],
-  })
 
   const toast = useToast()
   const onSubmit = formHook.handleSubmit((values) => {
     editProduct(
-      { id: values.id, product: productFromValues(values) },
+      { id: values.id, product: values },
       {
         onSuccess: () =>
           toast({

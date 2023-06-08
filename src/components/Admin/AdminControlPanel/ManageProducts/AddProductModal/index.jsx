@@ -20,18 +20,9 @@ const AddProductModal = ({ isOpen, onClose }) => {
   const formHook = useForm()
 
   const { mutate: createProduct } = useProductCreateMutation()
-  const productFromValues = (values) => ({
-    name: values.name,
-    description: values.description,
-    default_price_data: {
-      currency: 'EUR',
-      unit_amount: Math.round(values.price * 100),
-    },
-    images: [values.image],
-  })
 
   const onSubmit = formHook.handleSubmit((values) => {
-    createProduct(productFromValues(values), {
+    createProduct(values, {
       onSuccess: () =>
         toast({
           title: 'Product added successfully!',

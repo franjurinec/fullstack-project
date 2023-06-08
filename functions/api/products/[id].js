@@ -18,17 +18,17 @@ export const onRequestPut = async ({ env, params, request, data }) => {
 
   const stripe = new Stripe(env.STRIPE_API_KEY)
   const productId = params.id
-  const newProductData = await request.json()
-
+  const productData = await request.json()
   try {
     const newProduct = {
-      name: newProductData.name,
-      description: newProductData.description,
-      images: newProductData.images,
+      name: productData.name,
+      description: productData.description,
+      images: productData.images,
       default_price: await stripe.prices
         .create({
           product: productId,
-          ...newProductData.default_price_data,
+          currency: 'EUR',
+          unit_amount: Math.round(productData.price * 100),
         })
         .then((price) => price.id),
     }
