@@ -69,3 +69,5 @@
 - Minor Improvements: 1h
 - Extended E2E Testing: 3h
 - UI Improvements: 2h
+- API Changes: 1h
+- Extended E2E Testing 1h
