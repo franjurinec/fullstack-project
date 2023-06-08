@@ -34,7 +34,8 @@ const EditProductModal = ({ productId, isOpen, onClose }) => {
       { id: values.id, product: productFromValues(values) },
       {
         onSuccess: () =>
-          toast('Product updated successfully!', {
+          toast({
+            title: 'Product updated successfully!',
             status: 'success',
           }),
       }

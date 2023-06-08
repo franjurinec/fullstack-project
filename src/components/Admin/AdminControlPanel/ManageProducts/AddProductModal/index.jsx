@@ -6,6 +6,7 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  useToast,
 } from '@chakra-ui/react'
 import AddProductForm from './AddProductForm'
 import Button from '../../../../common/Button'
@@ -13,6 +14,8 @@ import { useForm } from 'react-hook-form'
 import { useProductCreateMutation } from '../../../../../hooks/productHooks'
 
 const AddProductModal = ({ isOpen, onClose }) => {
+  const toast = useToast()
+
   const PRODUCT_FORM_ID = 'add-product-form'
   const formHook = useForm()
 
@@ -28,7 +31,13 @@ const AddProductModal = ({ isOpen, onClose }) => {
   })
 
   const onSubmit = formHook.handleSubmit((values) => {
-    createProduct(productFromValues(values))
+    createProduct(productFromValues(values), {
+      onSuccess: () =>
+        toast({
+          title: 'Product added successfully!',
+          status: 'success',
+        }),
+    })
     onClose()
   })
 
