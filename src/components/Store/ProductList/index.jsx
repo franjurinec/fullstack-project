@@ -1,12 +1,28 @@
-import { Flex } from '@chakra-ui/react'
+import { Center, Flex, Heading, Spinner } from '@chakra-ui/react'
 import { useProductsQuery } from '../../../hooks/productHooks'
 import ProductCard from './ProductCard'
 
 const ProductList = () => {
   const { data: products, isLoading, error } = useProductsQuery()
 
-  if (isLoading) return null
-  if (error) return 'An error occured when loading products!'
+  if (isLoading) {
+    return (
+      <Center>
+        <Spinner size="xl" />
+      </Center>
+    )
+  }
+
+  if (error) {
+    return (
+      <Center>
+        <Heading size="4xl" fontWeight="thin">
+          AN ERROR OCCURED
+        </Heading>
+      </Center>
+    )
+  }
+
   return (
     <Flex
       data-test-class={'product-list'}

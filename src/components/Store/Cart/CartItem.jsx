@@ -1,4 +1,11 @@
-import { AspectRatio, Flex, Image, Text } from '@chakra-ui/react'
+import {
+  AspectRatio,
+  Center,
+  Flex,
+  Image,
+  Spinner,
+  Text,
+} from '@chakra-ui/react'
 import { useProductQuery } from '../../../hooks/productHooks'
 import { useCartStore } from '../../../store/cartStore'
 import Button from '../../common/Button'
@@ -45,11 +52,27 @@ const CartItem = ({ productId, quantity }) => {
   const { incrementById, decrementById, removeAllById } = useCartStore()
 
   useEffect(() => {
-    if (error?.message === 'Invalid product.') removeAllById(productId)
+    if (error?.message === 'Product not found.') removeAllById(productId)
   }, [error])
 
-  if (isLoading) return 'Loading...'
-  if (error) return 'Error!'
+  if (isLoading) {
+    return (
+      <Center>
+        <Spinner size="md" />
+      </Center>
+    )
+  }
+
+  if (error) {
+    return (
+      <Center>
+        <Text fontSize="xl" fontWeight="thin">
+          Failed to fetch product details.
+        </Text>
+      </Center>
+    )
+  }
+
   return (
     <Flex alignItems={'center'}>
       <AspectRatio ratio={1.1} w={14} mr={4}>

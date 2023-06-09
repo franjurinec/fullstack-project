@@ -11,7 +11,7 @@ export const onRequestGet = async ({ env, params }) => {
       expand: ['default_price'],
     })
     .catch(() => undefined)
-  if (!product) return new Response(null, { status: 400 })
+  if (!product) return new Response(null, { status: 404 })
 
   return Response.json(simpleProduct(product))
 }

@@ -14,6 +14,9 @@ import {
   Flex,
   useToast,
   useDisclosure,
+  Center,
+  Spinner,
+  Heading,
 } from '@chakra-ui/react'
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
 import {
@@ -89,7 +92,24 @@ const AdminProductsTable = () => {
     },
   })
 
-  if (isLoading || error) return null
+  if (isLoading) {
+    return (
+      <Center>
+        <Spinner size="md" />
+      </Center>
+    )
+  }
+
+  if (error) {
+    return (
+      <Center>
+        <Heading size="4xl" fontWeight="thin">
+          AN ERROR OCCURED
+        </Heading>
+      </Center>
+    )
+  }
+
   return (
     <Table data-test-id={'admin-table'}>
       <Thead>

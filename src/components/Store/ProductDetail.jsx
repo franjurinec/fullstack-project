@@ -5,6 +5,8 @@ import {
   AspectRatio,
   Heading,
   useToast,
+  Center,
+  Spinner,
 } from '@chakra-ui/react'
 import Button from '../common/Button'
 import { useProductQuery } from '../../hooks/productHooks'
@@ -26,8 +28,24 @@ const ProductDetail = () => {
     })
   }
 
-  if (isLoading) return null
-  if (error) return `An error occured when loading product ${params.id}!`
+  if (isLoading) {
+    return (
+      <Center>
+        <Spinner size="xl" />
+      </Center>
+    )
+  }
+
+  if (error) {
+    return (
+      <Center>
+        <Heading size="4xl" fontWeight="thin">
+          PRODUCT NOT FOUND
+        </Heading>
+      </Center>
+    )
+  }
+
   return (
     <Flex data-test-class={'product-details'} gap={16} wrap="wrap">
       <Flex direction="column" width="xl">

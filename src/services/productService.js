@@ -13,7 +13,7 @@ export const getProducts = async () => {
 export const getProduct = async (id) => {
   if (!id) throw new Error('Product ID not specified.')
   const response = await fetch(`/api/products/${id}`)
-  if (response.status === 400) throw new Error('Invalid product.')
+  if (response.status === 404) throw new Error('Product not found.')
   if (!response.ok) throw new Error('An error has occured.')
   const data = await response.json()
   return productSchema.parseAsync(data).catch(() => {
