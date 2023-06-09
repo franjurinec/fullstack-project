@@ -2,24 +2,26 @@
 
 - Frontend
   - React Frontend
+  - Vite + SWC for dev server and production build
   - ChakraUI for UI components
   - React Router for routing
-  - React Hook Form for form control and client-side validation
-  - TanStack Query (React Query) for backend queries and mutations
-  - TanStack Table for data tables
   - Zustand for state management
     - immer for mutations
     - localStorage for persistence
-  - Vite + SWC for dev server and production build
+  - Zod for API and form data validation
+  - React Hook Form for form control and validation
+  - TanStack Query (React Query) for backend queries and mutations
+  - TanStack Table for data tables
+- Shared
+  - Zod data schemas
 - Backend
-  - Clouflare Functions (Edge)
-    - Wrangler v3 for Local Serving
-    - CRUD operations
-    - Auth operations
+  - Clouflare (Edge) Functions
+    - Wrangler3 (workerd) for Local Serving
   - StripeAPI integration
     - Used as main database
     - Full checkout functionality
-  - JWT-based admin auth and protected routes
+  - JWT-based auth
+  - Zod for request data validation
 - Other
   - ESLint for linting
   - Prettier for formatting
