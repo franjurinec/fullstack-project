@@ -2,6 +2,7 @@ import { AspectRatio, Flex, Image, Text } from '@chakra-ui/react'
 import { useProductQuery } from '../../../hooks/productHooks'
 import { useCartStore } from '../../../store/cartStore'
 import Button from '../../common/Button'
+import { useEffect } from 'react'
 
 const CartItemControls = ({ quantity, onIncrement, onDecrement }) => (
   <Flex>
@@ -41,7 +42,11 @@ const CartItemControls = ({ quantity, onIncrement, onDecrement }) => (
 
 const CartItem = ({ productId, quantity }) => {
   const { data: product, isLoading, error } = useProductQuery(productId)
-  const { incrementById, decrementById } = useCartStore()
+  const { incrementById, decrementById, removeAllById } = useCartStore()
+
+  useEffect(() => {
+    if (error?.message === 'Invalid product.') removeAllById(productId)
+  }, [error])
 
   if (isLoading) return 'Loading...'
   if (error) return 'Error!'

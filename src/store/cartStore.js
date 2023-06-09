@@ -20,7 +20,6 @@ export const useCartStore = create(
           delete state.cart[id]
         }),
       removeAll: () => {
-        console.log('removing all')
         set((state) => {
           state.cart = {}
         })

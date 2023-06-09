@@ -6,9 +6,12 @@ import { productFormSchema } from '../../../schema/product'
 export const onRequestGet = async ({ env, params }) => {
   const stripe = new Stripe(env.STRIPE_API_KEY)
   const productId = params.id
-  const product = await stripe.products.retrieve(productId, {
-    expand: ['default_price'],
-  })
+  const product = await stripe.products
+    .retrieve(productId, {
+      expand: ['default_price'],
+    })
+    .catch(() => undefined)
+  if (!product) return new Response(null, { status: 400 })
 
   return Response.json(simpleProduct(product))
 }

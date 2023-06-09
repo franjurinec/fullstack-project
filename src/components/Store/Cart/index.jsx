@@ -3,13 +3,11 @@ import Button from '../../common/Button'
 import CartItem from './CartItem'
 import { postCheckout } from '../../../services/checkoutService'
 import { useCartStore } from '../../../store/cartStore'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
 const Cart = () => {
   const cartItems = useCartStore((state) => state.cart)
-
-  useEffect(() => console.log(cartItems), [cartItems])
 
   const items = useMemo(
     () =>
