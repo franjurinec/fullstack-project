@@ -24,8 +24,6 @@ export const createProduct = async (product) => {
   })
 
   if (!response.ok) throw new Error('An error has occured.')
-
-  return response.json()
 }
 
 export const updateProduct = async ({ id, product }) => {
@@ -40,8 +38,6 @@ export const updateProduct = async ({ id, product }) => {
   })
 
   if (!response.ok) throw new Error('An error has occured.')
-
-  return response.json()
 }
 
 export const deactivateProduct = async (id) => {
@@ -51,6 +47,4 @@ export const deactivateProduct = async (id) => {
   })
 
   if (!response.ok) throw new Error('An error has occured.')
-
-  return response.json()
 }

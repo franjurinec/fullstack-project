@@ -30,7 +30,7 @@ export const onRequestGet = async ({ env }) => {
 
 // POST /api/products
 export const onRequestPost = async ({ env, request, data }) => {
-  if (!data.authenticated) return new Response('Unauthorized.', { status: 401 })
+  if (!data.authenticated) return new Response(null, { status: 401 })
 
   const stripe = new Stripe(env.STRIPE_API_KEY)
   const productData = await request.json()
@@ -44,6 +44,6 @@ export const onRequestPost = async ({ env, request, data }) => {
     images: [productData.image],
   }
 
-  const result = await stripe.products.create(product)
-  return Response.json(result)
+  await stripe.products.create(product)
+  return new Response(null, { status: 201 })
 }

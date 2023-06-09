@@ -32,22 +32,21 @@ const EditProductModal = ({ productId, isOpen, onClose }) => {
 
   const { data: product, isLoading, error } = useProductQuery(productId)
   useEffect(() => {
-    if (!productId || !product) return
+    if (!product) return
     reset({
-      id: productId,
       name: product.name,
       description: product.description,
       image: product.image,
       price: product.priceNumerical,
     })
-  }, [productId, product, reset])
+  }, [product, reset])
 
   const { mutate: editProduct } = useProductUpdateMutation()
 
   const toast = useToast()
   const onSubmit = handleSubmit((values) => {
     editProduct(
-      { id: values.id, product: values },
+      { id: productId, product: values },
       {
         onSuccess: () =>
           toast({
