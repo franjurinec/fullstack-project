@@ -1,3 +1,5 @@
+import { checkoutSessionSchema, newOrderSchema } from '../../schema/checkout'
+
 export const postCheckout = async (items) => {
   const response = await fetch(`/api/checkout`, {
     method: 'POST',
@@ -14,11 +16,17 @@ export const postCheckout = async (items) => {
 
   if (!response.ok) throw new Error('An error has occured.')
 
-  return response.json().then((data) => data.sessionUrl)
+  const data = await response.json()
+  return newOrderSchema.parseAsync(data).catch(() => {
+    throw new Error('Invalid server response.')
+  })
 }
 
 export const getCheckoutSession = async (id) => {
   const response = await fetch(`/api/checkout/${id}`)
   if (!response.ok) throw new Error('An error has occured.')
-  return response.json()
+  const data = await response.json()
+  return checkoutSessionSchema.parseAsync(data).catch(() => {
+    throw new Error('Invalid server response.')
+  })
 }

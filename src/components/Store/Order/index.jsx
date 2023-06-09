@@ -10,12 +10,10 @@ const Order = () => {
     isLoading,
     error,
   } = useCheckoutSessionQuery(params.id)
-  const orderSuccessful =
-    checkoutSession?.status === 'complete' &&
-    checkoutSession?.payment_status === 'paid'
 
   if (isLoading || error) return null
-  if (orderSuccessful) return <OrderSuccess checkoutSession={checkoutSession} />
+  if (checkoutSession?.success)
+    return <OrderSuccess checkoutSession={checkoutSession} />
   return <OrderFail />
 }
 

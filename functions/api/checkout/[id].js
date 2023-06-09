@@ -6,5 +6,9 @@ export const onRequestGet = async ({ env, params }) => {
 
   const session = await stripe.checkout.sessions.retrieve(sessionId)
 
-  return Response.json(session)
+  return Response.json({
+    name: session.customer_details.name,
+    email: session.customer_details.email,
+    success: session.status === 'complete' && session.payment_status === 'paid',
+  })
 }
