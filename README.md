@@ -71,4 +71,6 @@
 - Extended E2E Testing: 3h
 - UI Improvements: 2h
 - API Changes: 1h
-- Extended E2E Testing 2h
+- Extended E2E Testing: 2h
+- Added Zod-based Validation: 6h
+- Improved Cart Error Handling: 1h
