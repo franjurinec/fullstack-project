@@ -13,7 +13,7 @@ export const onRequest = async ({ request, env, data, next }) => {
   return next().catch(
     // Catch all server errors
     (error) => {
-      console.log(error)
+      console.error(error)
       return new Response('A server error has occured.', { status: 500 })
     }
   )
