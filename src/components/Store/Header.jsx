@@ -1,4 +1,4 @@
-import { Flex, Heading, Link, Text } from '@chakra-ui/react'
+import { Flex, Heading, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { useCartStore } from '../../store/cartStore'
 import { useMemo } from 'react'
@@ -30,12 +30,7 @@ const Header = () => {
       >
         <Flex flexGrow={1}>
           <Link as={RouterLink} to="/" style={{ textDecoration: 'none' }}>
-            <Heading size="3xl">
-              GOOD.
-              <Text as="span" fontWeight="thin">
-                STORE
-              </Text>
-            </Heading>
+            <Heading size="3xl">STORE.</Heading>
           </Link>
         </Flex>
         <Link as={RouterLink} to="/cart" style={{ textDecoration: 'none' }}>
