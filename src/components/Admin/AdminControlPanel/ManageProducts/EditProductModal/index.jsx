@@ -11,16 +11,41 @@ import {
 import AddProductForm from './EditProductForm'
 import Button from '../../../../common/Button'
 import { useForm } from 'react-hook-form'
-import { useProductUpdateMutation } from '../../../../../hooks/productHooks'
+import {
+  useProductQuery,
+  useProductUpdateMutation,
+} from '../../../../../hooks/productHooks'
+import { ProductFormData } from '../../../../../../schema/product'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
 
 const EditProductModal = ({ productId, isOpen, onClose }) => {
   const PRODUCT_FORM_ID = `edit-product-${productId}`
-  const formHook = useForm()
+  const {
+    reset,
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(ProductFormData),
+  })
+
+  const { data: product, isLoading, error } = useProductQuery(productId)
+  useEffect(() => {
+    if (!productId || !product) return
+    reset({
+      id: productId,
+      name: product.name,
+      description: product.description,
+      image: product.image,
+      price: product.priceNumerical,
+    })
+  }, [productId, product, reset])
 
   const { mutate: editProduct } = useProductUpdateMutation()
 
   const toast = useToast()
-  const onSubmit = formHook.handleSubmit((values) => {
+  const onSubmit = handleSubmit((values) => {
     editProduct(
       { id: values.id, product: values },
       {
@@ -38,7 +63,7 @@ const EditProductModal = ({ productId, isOpen, onClose }) => {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      onCloseComplete={formHook.reset}
+      onCloseComplete={reset}
       closeOnOverlayClick={false}
     >
       <ModalOverlay />
@@ -46,12 +71,15 @@ const EditProductModal = ({ productId, isOpen, onClose }) => {
         <ModalHeader>Edit Product</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <AddProductForm
-            formId={PRODUCT_FORM_ID}
-            productId={productId}
-            formHook={formHook}
-            onSubmit={onSubmit}
-          />
+          {!(isLoading || error) && (
+            <AddProductForm
+              formId={PRODUCT_FORM_ID}
+              productId={productId}
+              register={register}
+              errors={errors}
+              onSubmit={onSubmit}
+            />
+          )}
         </ModalBody>
 
         <ModalFooter>
@@ -60,7 +88,7 @@ const EditProductModal = ({ productId, isOpen, onClose }) => {
             flexGrow={1}
             type="submit"
             form={PRODUCT_FORM_ID} // Submit button outside form, using id for reference
-            isLoading={formHook.isSubmitting}
+            isLoading={isSubmitting}
           >
             Submit
           </Button>

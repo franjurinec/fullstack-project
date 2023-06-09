@@ -16,18 +16,7 @@ const AddProductForm = ({
   <form id={formId} onSubmit={onSubmit}>
     <FormControl data-test-id={'product-add-form'} isInvalid={errors.name}>
       <FormLabel htmlFor="name">Name</FormLabel>
-      <Input
-        id="name"
-        isRequired
-        placeholder="Product Name"
-        {...register('name', {
-          required: 'Name is required.',
-          minLength: {
-            value: 2,
-            message: 'Name needs to be longer than 2 characters.',
-          },
-        })}
-      />
+      <Input id="name" placeholder="Product Name" {...register('name')} />
       <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
     </FormControl>
 
@@ -36,13 +25,7 @@ const AddProductForm = ({
       <Input
         id="description"
         placeholder="This is a product which..."
-        {...register('description', {
-          required: 'Description is required.',
-          minLength: {
-            value: 10,
-            message: 'Description need to be 10 characters or longer.',
-          },
-        })}
+        {...register('description')}
       />
       <FormErrorMessage>
         {errors.description && errors.description.message}
@@ -54,14 +37,7 @@ const AddProductForm = ({
       <Input
         id="image"
         placeholder="https://images.com/some-image.jpg"
-        {...register('image', {
-          required: 'A cover image is required.',
-          pattern: {
-            value:
-              /(((ftp|http|https):\/\/)|(\/)|(..\/))(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/,
-            message: 'Please enter a valid URL.',
-          },
-        })}
+        {...register('image')}
       />
       <FormErrorMessage>
         {errors.image && errors.image.message}
@@ -72,13 +48,8 @@ const AddProductForm = ({
       <FormLabel htmlFor="price">Price in EUR</FormLabel>
       <Input
         id="price"
-        type="number"
         placeholder="100.00"
-        {...register('price', {
-          required: 'Price is required.',
-          valueAsNumber: true,
-          min: { value: 0.01, message: 'Price has to be at least 0.01 EUR.' },
-        })}
+        {...register('price', { valueAsNumber: true })}
       />
       <FormErrorMessage>
         {errors.price && errors.price.message}
