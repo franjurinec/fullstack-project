@@ -7,13 +7,15 @@ import {
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import Button from '../../common/Button'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { loginFormSchema } from '../../../../schema/auth'
 
 const PasswordForm = ({ onSubmit }) => {
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm()
+  } = useForm({ resolver: zodResolver(loginFormSchema) })
 
   return (
     <Box w="xs">
@@ -23,7 +25,7 @@ const PasswordForm = ({ onSubmit }) => {
             id="password"
             placeholder="Password"
             type="password"
-            {...register('password', { required: 'Admin password required.' })}
+            {...register('password')}
           />
           <FormErrorMessage>
             {errors.password && errors.password.message}

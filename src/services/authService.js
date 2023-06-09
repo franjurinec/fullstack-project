@@ -1,3 +1,5 @@
+import { authCheckSchema, tokenSchema } from '../../schema/auth'
+
 const LS_TOKEN_KEY = 'fj-admin-token'
 
 export const getAuthHeader = () => {
@@ -17,11 +19,12 @@ export const authenticate = async (password) => {
   if (response.status === 401) throw new Error('Invalid password!')
   if (!response.ok) throw new Error('An error has occured.')
 
-  const { token } = await response.json().catch(() => {
-    throw new Error('Failed to process server response.')
+  const data = await response.json()
+  const authData = await tokenSchema.parseAsync(data).catch(() => {
+    throw new Error('Invalid server response.')
   })
 
-  localStorage.setItem(LS_TOKEN_KEY, token)
+  localStorage.setItem(LS_TOKEN_KEY, authData.token)
 }
 
 export const deleteAuth = () => {
@@ -37,5 +40,11 @@ export const isAuthenticated = async () => {
 
   if (!response.ok) throw new Error('An error has occured.')
 
-  return await response.json().then((data) => data.authenticated)
+  const data = await response.json()
+  return authCheckSchema
+    .parseAsync(data)
+    .then((authData) => authData.authenticated)
+    .catch(() => {
+      throw new Error('Invalid server response.')
+    })
 }
