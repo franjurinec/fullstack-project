@@ -17,9 +17,12 @@ export const postCheckout = async (items) => {
   if (!response.ok) throw new Error('An error has occured.')
 
   const data = await response.json()
-  return newOrderSchema.parseAsync(data).catch(() => {
-    throw new Error('Invalid server response.')
-  })
+  return newOrderSchema
+    .parseAsync(data)
+    .then((sessionData) => sessionData.sessionUrl)
+    .catch(() => {
+      throw new Error('Invalid server response.')
+    })
 }
 
 export const getCheckoutSession = async (id) => {
