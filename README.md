@@ -76,3 +76,4 @@
 - Extended E2E Testing: 2h
 - Added Zod-based Validation: 6h
 - Improved Cart Error Handling: 1h
+- Handle Loading and Error UI States: 2h
