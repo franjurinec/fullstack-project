@@ -15,9 +15,9 @@ import {
   useProductQuery,
   useProductUpdateMutation,
 } from '../../../../../hooks/productHooks'
-import { ProductFormData } from '../../../../../../schema/product'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
+import { productFormSchema } from '../../../../../../schema/product'
 
 const EditProductModal = ({ productId, isOpen, onClose }) => {
   const PRODUCT_FORM_ID = `edit-product-${productId}`
@@ -27,7 +27,7 @@ const EditProductModal = ({ productId, isOpen, onClose }) => {
     register,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: zodResolver(ProductFormData),
+    resolver: zodResolver(productFormSchema),
   })
 
   const { data: product, isLoading, error } = useProductQuery(productId)

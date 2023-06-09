@@ -1,5 +1,6 @@
 import Stripe from 'stripe'
 import { simpleProduct } from '.'
+import { productFormSchema } from '../../../schema/product'
 
 // GET /api/products/[:id]
 export const onRequestGet = async ({ env, params }) => {
@@ -18,12 +19,21 @@ export const onRequestPut = async ({ env, params, request, data }) => {
 
   const stripe = new Stripe(env.STRIPE_API_KEY)
   const productId = params.id
-  const productData = await request.json()
 
-  const oldProduct = await stripe.products.retrieve(productId, {
-    expand: ['default_price'],
-  })
+  const requestData = await request.json()
+  const productData = await productFormSchema
+    .parseAsync(requestData)
+    .catch(() => undefined)
+  if (!productData) return new Response(null, { status: 400 })
 
+  const oldProduct = await stripe.products
+    .retrieve(productId, {
+      expand: ['default_price'],
+    })
+    .catch(() => undefined)
+  if (!oldProduct) return new Response(null, { status: 400 })
+
+  // Only modify affected fields
   const newProduct = {}
 
   if (productData.name !== oldProduct.name) newProduct.name = productData.name

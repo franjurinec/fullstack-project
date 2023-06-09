@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const ProductData = z.object({
+export const productSchema = z.object({
   id: z.string(),
   name: z.string(),
   description: z.string(),
@@ -10,7 +10,9 @@ export const ProductData = z.object({
   priceNumerical: z.number(),
 })
 
-export const ProductFormData = z.object({
+export const productsSchema = z.array(productSchema)
+
+export const productFormSchema = z.object({
   name: z.string().nonempty({ message: 'Name is required.' }),
   description: z
     .string()

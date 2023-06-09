@@ -1,4 +1,5 @@
 import Stripe from 'stripe'
+import { productFormSchema } from '../../../schema/product'
 
 // Stripe -> Frontend Model
 export const simpleProduct = (product) => ({
@@ -32,8 +33,13 @@ export const onRequestGet = async ({ env }) => {
 export const onRequestPost = async ({ env, request, data }) => {
   if (!data.authenticated) return new Response(null, { status: 401 })
 
+  const requestData = await request.json()
+  const productData = await productFormSchema
+    .parseAsync(requestData)
+    .catch(() => undefined)
+  if (!productData) return new Response(null, { status: 400 })
+
   const stripe = new Stripe(env.STRIPE_API_KEY)
-  const productData = await request.json()
   const product = {
     name: productData.name,
     description: productData.description,

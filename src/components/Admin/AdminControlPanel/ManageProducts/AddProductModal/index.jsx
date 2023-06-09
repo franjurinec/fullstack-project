@@ -13,14 +13,14 @@ import Button from '../../../../common/Button'
 import { useForm } from 'react-hook-form'
 import { useProductCreateMutation } from '../../../../../hooks/productHooks'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ProductFormData } from '../../../../../../schema/product'
+import { productFormSchema } from '../../../../../../schema/product'
 
 const AddProductModal = ({ isOpen, onClose }) => {
   const toast = useToast()
 
   const PRODUCT_FORM_ID = 'add-product-form'
   const formHook = useForm({
-    resolver: zodResolver(ProductFormData),
+    resolver: zodResolver(productFormSchema),
   })
 
   const { mutate: createProduct } = useProductCreateMutation()
