@@ -5,7 +5,8 @@ export const onRequestPost = async ({ env, request }) => {
   const requestUrl = new URL(request.url).origin
   const orderUrl = `${requestUrl}/order/{CHECKOUT_SESSION_ID}`
 
-  const { line_items } = await request.json()
+  // TODO: Validation
+  const { line_items } = await request.json().catch(() => undefined)
 
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',

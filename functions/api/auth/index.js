@@ -2,7 +2,7 @@ import jwt from '@tsndr/cloudflare-worker-jwt'
 import { loginFormSchema } from '../../../schema/auth'
 
 export const onRequestPost = async ({ request, env }) => {
-  const data = await request.json()
+  const data = await request.json().catch(() => undefined)
   const loginData = await loginFormSchema
     .parseAsync(data)
     .catch(() => undefined)

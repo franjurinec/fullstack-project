@@ -23,7 +23,7 @@ export const onRequestPut = async ({ env, params, request, data }) => {
   const stripe = new Stripe(env.STRIPE_API_KEY)
   const productId = params.id
 
-  const requestData = await request.json()
+  const requestData = await request.json().catch(() => undefined)
   const productData = await productFormSchema
     .parseAsync(requestData)
     .catch(() => undefined)
@@ -34,7 +34,7 @@ export const onRequestPut = async ({ env, params, request, data }) => {
       expand: ['default_price'],
     })
     .catch(() => undefined)
-  if (!oldProduct) return new Response(null, { status: 400 })
+  if (!oldProduct) return new Response(null, { status: 404 })
 
   // Only modify affected fields
   const newProduct = {}

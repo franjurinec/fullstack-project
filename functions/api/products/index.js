@@ -33,7 +33,7 @@ export const onRequestGet = async ({ env }) => {
 export const onRequestPost = async ({ env, request, data }) => {
   if (!data.authenticated) return new Response(null, { status: 401 })
 
-  const requestData = await request.json()
+  const requestData = await request.json().catch(() => undefined)
   const productData = await productFormSchema
     .parseAsync(requestData)
     .catch(() => undefined)
