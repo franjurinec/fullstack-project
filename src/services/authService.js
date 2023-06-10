@@ -19,7 +19,7 @@ export const authenticate = async (password) => {
   if (response.status === 401) throw new Error('Invalid password!')
   if (!response.ok) throw new Error('An error has occured.')
 
-  const data = await response.json()
+  const data = await response.json().catch(() => undefined)
   const authData = await tokenSchema.parseAsync(data).catch(() => {
     throw new Error('Invalid server response.')
   })
@@ -40,7 +40,7 @@ export const isAuthenticated = async () => {
 
   if (!response.ok) throw new Error('An error has occured.')
 
-  const data = await response.json()
+  const data = await response.json().catch(() => undefined)
   return authCheckSchema
     .parseAsync(data)
     .then((authData) => authData.authenticated)

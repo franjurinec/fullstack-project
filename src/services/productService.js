@@ -4,7 +4,7 @@ import { getAuthHeader } from './authService'
 export const getProducts = async () => {
   const response = await fetch('/api/products')
   if (!response.ok) throw new Error('An error has occured.')
-  const data = await response.json()
+  const data = await response.json().catch(() => undefined)
   return productsSchema.parseAsync(data).catch(() => {
     throw new Error('Invalid server response.')
   })
@@ -15,7 +15,7 @@ export const getProduct = async (id) => {
   const response = await fetch(`/api/products/${id}`)
   if (response.status === 404) throw new Error('Product not found.')
   if (!response.ok) throw new Error('An error has occured.')
-  const data = await response.json()
+  const data = await response.json().catch(() => undefined)
   return productSchema.parseAsync(data).catch(() => {
     throw new Error('Invalid server response.')
   })
