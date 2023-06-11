@@ -1,5 +1,22 @@
 /// <reference types="Cypress" />
 
+before(function () {
+  cy.fixture('admin.json').then((adminData) => {
+    cy.getLoginToken(adminData.testPassword).then((token) => {
+      cy.disableAllProducts(token)
+      cy.createTestProducts(token)
+    })
+  })
+})
+
+after(function () {
+  cy.fixture('admin.json').then(({ testPassword }) =>
+    cy.getLoginToken(testPassword).then((token) => {
+      cy.disableAllProducts(token)
+    })
+  )
+})
+
 describe('admin portal', () => {
   beforeEach(() => {
     cy.fixture('admin.json').its('testPassword').then(cy.login)
