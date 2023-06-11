@@ -1,0 +1,14 @@
+version: '3.8'
+name: 'store-dev'
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/dev.Dockerfile
+    image: thefenix/fullstack-store-dev
+    container_name: store-dev-app
+    ports:
+      - 8788:8788
+    volumes:
+      - ../:/usr/src/app
+      - /usr/src/app/node_modules/
