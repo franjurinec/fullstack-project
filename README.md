@@ -26,9 +26,10 @@
   - ESLint for linting
   - Prettier for formatting
   - Cypress for E2E Frontend and API tests
-  - CI via GitHub Actions
+  - CI/CD via GitHub Actions
     - Linting
     - E2E Tests
+    - Docker Image Publishing
   - CD via Cloudflare Pages
 
 ## Timekeeping
