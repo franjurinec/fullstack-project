@@ -81,3 +81,4 @@
 - Extended Checkout Data Validation: 0.5h
 - Added Deployment Dockerfile and Docker Compose: 2h
 - Added Dev Dockerfile and Docker Compose: 2h
+- Added Docker Image CD: 1h
