@@ -1,0 +1,13 @@
+version: '3.8'
+name: 'store-deployment'
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: thefenix/fullstack-store
+    container_name: store-deployment-app
+    ports:
+      - 8788:8788
+    env_file:
+      - ../.dev.vars

@@ -16,7 +16,7 @@
   - Zod data schemas
 - Backend
   - Clouflare (Edge) Functions
-    - Wrangler3 (workerd) for Local Serving
+    - Wrangler for Local Serving
   - StripeAPI integration
     - Used as main database
     - Full checkout functionality
