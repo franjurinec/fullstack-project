@@ -77,3 +77,6 @@
 - Added Zod-based Validation: 6h
 - Improved Cart Error Handling: 1h
 - Handle Loading and Error UI States: 2h
+- Extended E2E Tests: 1h
+- Extended Checkout Data Validation: 0.5h
+- Added Deployment Dockerfile and Docker Compose: 2h
