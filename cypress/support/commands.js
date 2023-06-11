@@ -42,3 +42,47 @@ Cypress.Commands.add('ensureOneProduct', () => {
     .its('body')
     .should('have.length.at.least', 1)
 })
+
+Cypress.Commands.add('disableAllProducts', (adminToken) => {
+  cy.request('http://127.0.0.1:8788/api/products')
+    .its('body')
+    .then((products) => {
+      products.forEach((product) =>
+        cy.request({
+          method: 'DELETE',
+          url: `http://127.0.0.1:8788/api/products/${product.id}`,
+          headers: {
+            authorization: `Bearer ${adminToken}`,
+          },
+        })
+      )
+    })
+})
+
+Cypress.Commands.add('createTestProducts', (adminToken) => {
+  const testProducts = [
+    {
+      name: 'Test Product 1',
+      description: 'This product is used for Cypress E2E testing.',
+      image: 'https://picsum.photos/id/2/512/512',
+      price: 10,
+    },
+    {
+      name: 'Test Product 2',
+      description: 'This product is used for Cypress E2E testing.',
+      image: 'https://picsum.photos/id/2/512/512',
+      price: 20,
+    },
+  ]
+
+  testProducts.forEach((product) => {
+    cy.request({
+      url: 'http://127.0.0.1:8788/api/products',
+      method: 'POST',
+      body: product,
+      headers: {
+        authorization: `Bearer ${adminToken}`,
+      },
+    })
+  })
+})

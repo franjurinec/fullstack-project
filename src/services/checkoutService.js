@@ -4,7 +4,7 @@ import {
 } from '../../schema/checkout'
 
 export const postCheckout = async (items) => {
-  const response = await fetch(`/api/checkout`, {
+  const response = await fetch(`/api/checkouts`, {
     method: 'POST',
     redirect: 'manual',
     headers: {
@@ -29,7 +29,7 @@ export const postCheckout = async (items) => {
 }
 
 export const getCheckoutSession = async (id) => {
-  const response = await fetch(`/api/checkout/${id}`)
+  const response = await fetch(`/api/checkouts/${id}`)
   if (!response.ok) throw new Error('An error has occured.')
   const data = await response.json().catch(() => undefined)
   return checkoutSessionSchema.parseAsync(data).catch(() => {

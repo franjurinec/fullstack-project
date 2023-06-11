@@ -70,6 +70,12 @@ export const onRequestDelete = async ({ env, params, data }) => {
   const productId = params.id
 
   // Stripe API encourages deactivating instead of deleting
-  await stripe.products.update(productId, { active: false })
-  return new Response(null, { status: 204 })
+  return await stripe.products
+    .update(productId, { active: false })
+    .then(() => new Response(null, { status: 204 }))
+    .catch((error) => {
+      if (error.code === 'resource_missing')
+        return new Response(null, { status: 404 })
+      else throw error
+    })
 }

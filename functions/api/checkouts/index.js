@@ -10,7 +10,8 @@ export const onRequestPost = async ({ env, request }) => {
   const newOrderRequestData = await newOrderRequestSchema
     .parseAsync(data)
     .catch(() => undefined)
-  if (!newOrderRequestData) return new Response(null, { status: 400 })
+  if (!newOrderRequestData || newOrderRequestData?.line_items?.length === 0)
+    return new Response(null, { status: 400 })
 
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',

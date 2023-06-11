@@ -1,8 +1,23 @@
 /// <reference types="Cypress" />
 
-describe('store', () => {
-  before(cy.ensureOneProduct)
+before(function () {
+  cy.fixture('admin.json').then((adminData) => {
+    cy.getLoginToken(adminData.testPassword).then((token) => {
+      cy.disableAllProducts(token)
+      cy.createTestProducts(token)
+    })
+  })
+})
 
+after(function () {
+  cy.fixture('admin.json').then(({ testPassword }) =>
+    cy.getLoginToken(testPassword).then((token) => {
+      cy.disableAllProducts(token)
+    })
+  )
+})
+
+describe('store home', () => {
   beforeEach(() => cy.visit('http://127.0.0.1:8788/'))
 
   it('displays store elements', () => {
