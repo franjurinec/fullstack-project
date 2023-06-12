@@ -22,19 +22,24 @@ describe('store home', () => {
 
   it('displays store elements', () => {
     cy.get('header').should('be.visible')
-    cy.get('[data-test-class="product-list"]').should('be.visible')
+    cy.get('[data-test-class="product-list"]')
+      .should('be.visible')
+      .and('contain', 'Test Product 1')
+      .and('contain', 'Test Product 2')
     // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(2500) // wait for images to load before screenshot
     cy.screenshot()
   })
 
   it('allows opening product details', () => {
-    cy.get('[data-test-class="product-card"]').first().click()
+    cy.get('[data-test-class="product-card"]')
+      .contains('Test Product 1')
+      .click()
     cy.get('[data-test-class="product-details"]').should('be.visible')
   })
 
   it('allows opening cart', () => {
-    cy.contains('CART').click()
+    cy.get('[data-test-id="header-cart"]').click()
     cy.get('[data-test-class="cart-display"]').should('be.visible')
   })
 })
@@ -42,7 +47,9 @@ describe('store home', () => {
 describe('product details', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:8788')
-    cy.get('[data-test-class="product-card"]').first().click()
+    cy.get('[data-test-class="product-card"]')
+      .contains('Test Product 1')
+      .click()
   })
 
   it('displays product details', () => {
@@ -77,7 +84,7 @@ describe('cart', () => {
     cy.contains('Checkout').should('be.visible')
   })
 
-  it('allows changing the number of items', () => {
+  it('allows changing item quantities', () => {
     cy.contains('+1').click()
     cy.get('[data-test-class="cart-quantity"]').contains('2')
     cy.screenshot()

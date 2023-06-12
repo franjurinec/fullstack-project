@@ -17,6 +17,28 @@ after(function () {
   )
 })
 
+describe('admin login screen', () => {
+  it('allows logging in', () => {
+    cy.visit('http://127.0.0.1:8788/admin')
+    cy.fixture('admin.json')
+      .its('testPassword')
+      .then((password) => {
+        cy.get('#password').type(password)
+      })
+    cy.screenshot()
+    cy.get('[data-test-id="admin-login-form"]').submit()
+    cy.get('[data-test-id="admin-table"]').should('be.visible')
+  })
+
+  it('rejects for invalid password', () => {
+    cy.visit('http://127.0.0.1:8788/admin')
+    cy.get('#password').type('wrong_password')
+    cy.get('[data-test-id="admin-login-form"]').submit()
+    cy.contains('Invalid password!').should('be.visible')
+    cy.screenshot()
+  })
+})
+
 describe('admin portal', () => {
   beforeEach(() => {
     cy.fixture('admin.json').its('testPassword').then(cy.login)
@@ -52,6 +74,5 @@ describe('admin portal', () => {
   it('allows signing out', () => {
     cy.contains('Sign Out').click()
     cy.contains('Authenticate')
-    cy.screenshot()
   })
 })

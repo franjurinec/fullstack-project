@@ -19,7 +19,7 @@ const PasswordForm = ({ onSubmit }) => {
 
   return (
     <Box w="xs">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form data-test-id={'admin-login-form'} onSubmit={handleSubmit(onSubmit)}>
         <FormControl isInvalid={errors.password}>
           <Input
             id="password"
