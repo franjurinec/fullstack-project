@@ -1,6 +1,6 @@
 import Stripe from 'stripe'
-import { simpleProduct } from '.'
 import { productFormSchema } from '../../../schema/product'
+import { frontendProductData } from '../../utils/productUtils'
 
 // GET /api/products/[:id]
 export const onRequestGet = async ({ env, params }) => {
@@ -13,7 +13,7 @@ export const onRequestGet = async ({ env, params }) => {
     .catch(() => undefined)
   if (!product) return new Response(null, { status: 404 })
 
-  return Response.json(simpleProduct(product))
+  return Response.json(frontendProductData(product))
 }
 
 // PUT /api/products/[:id]

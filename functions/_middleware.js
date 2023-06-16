@@ -1,14 +1,14 @@
-import jwt from '@tsndr/cloudflare-worker-jwt'
+import { verifyToken } from './utils/authUtils'
 
-const verifyAdmin = async (request, secret, data) => {
+const verifyAuth = async (request, secret) => {
   const authHeader = request.headers.get('authorization')
   if (!authHeader) return
   const token = authHeader.substring('Bearer '.length)
-  data.authenticated = await jwt.verify(token, secret).catch(() => false)
+  return await verifyToken(token, secret)
 }
 
 export const onRequest = async ({ request, env, data, next }) => {
-  await verifyAdmin(request, env.SECRET, data)
+  data.authenticated = await verifyAuth(request, env.SECRET)
 
   return next().catch(
     // Catch all server errors

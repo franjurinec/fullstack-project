@@ -85,3 +85,4 @@
 - Added Docker Image CD: 1h
 - Revamped and Extended API Tests: 3h
 - Extended E2E Tests: 1h
+- API Refactoring: 2h
