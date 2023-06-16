@@ -1,3 +1,11 @@
+# Fullstack Web Development - Project (7cr)
+
+## Overview
+This application represents a simple web store constructed around [Cloudflare Pages](https://pages.cloudflare.com/) and the [Stripe](https://stripe.com/) API.
+
+## Screenshots
+Found in [SCREENSHOTS.md](https://github.com/franjurinec/fullstack-project/blob/master/SCREENSHOTS.md)
+
 ## Tech Overview
 
 - Frontend
@@ -33,6 +41,9 @@
   - CD via Cloudflare Pages
 
 ## Timekeeping
+
+**Total Time: 124.5h**
+
 | Date | Work Item | Time Spent |
 | --- | :--- | :--- |
 | 04/02/2023 | Cloudflare Services Research (Workers, Pages, Functions) | 6h |
