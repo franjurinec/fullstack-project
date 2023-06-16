@@ -30,3 +30,8 @@
 On new commit: linting + E2E tests, Docker image build and push, Cloudflare pages deployment
 
 ![Ci/CD Pipeline](https://github.com/franjurinec/fullstack-project/assets/15126801/4efbf3a3-b6e9-4aec-9a3e-f6df8b09613f)
+
+# Stripe Dashboard
+Products created using the admin UI are recorded using Stripe as the main data layer, therfore, the same products are accessible and editable from the Stripe dashboard as well.
+
+![Stripe Dashboard](https://github.com/franjurinec/fullstack-project/assets/15126801/25b08b42-82ee-489f-aaee-3eb0ca4276d7)
