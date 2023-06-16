@@ -2,9 +2,43 @@
 
 ## Overview
 This application represents a simple web store constructed around [Cloudflare Pages](https://pages.cloudflare.com/) and the [Stripe](https://stripe.com/) API.
+The Cloudlfare Pages Functions (Edge Functions) are used as the application backend API, while Stripe as used as the main database containing product and order information.
+
+## Deployment
+The app is currently deployed at https://fullstack-project.pages.dev/, with the admin panel accessible via https://fullstack-project.pages.dev/admin.
 
 ## Screenshots
 Found in [SCREENSHOTS.md](https://github.com/franjurinec/fullstack-project/blob/master/SCREENSHOTS.md)
+
+## Features
+
+The following general features exist in the app:
+- Home Page
+  - Previewing all available products
+- Product Details
+  - More detailed product information page
+  - Adding product to cart
+- Cart
+  - Modifying cart contents
+  - Entering Stripe checkout
+- Stripe checkout
+  - Flow provided by Stripe
+  - Allows full checkout/payment features (deployed in test mode)
+- Confirmation page
+  - Displaying checkout confirmation or error
+- Admin Panel
+  - JWT-based login
+  - Product overview table
+  - Adding products
+  - Editing products
+  - Removing products
+- General
+  - Toast popups for error/success messages
+  - Detailed data schema and validation rules
+  - Persisted local state
+  - API data validation
+  - React Query integration
+
 
 ## Tech Overview
 
