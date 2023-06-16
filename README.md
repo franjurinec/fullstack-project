@@ -35,7 +35,7 @@
 ## Timekeeping
 | Date | Work Item | Time Spent |
 | --- | :--- | :--- |
-| 04/02/2023 | Cloudflare Services Research (Workers, Pages, Functions) | 2h |
+| 04/02/2023 | Cloudflare Services Research (Workers, Pages, Functions) | 6h |
 | 05/02/2023 | Tooling Selection | 2h |
 | 05/02/2023 | Initial Setup | 2h |
 | 05/02/2023 | Cloudflare Pages CD Setup | 1h |
