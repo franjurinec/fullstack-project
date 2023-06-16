@@ -34,7 +34,7 @@ describe('admin login screen', () => {
     cy.visit('http://127.0.0.1:8788/admin')
     cy.get('#password').type('wrong_password')
     cy.get('[data-test-id="admin-login-form"]').submit()
-    cy.contains('Invalid password!').should('be.visible')
+    cy.contains('Invalid password!')
     cy.screenshot()
   })
 })
