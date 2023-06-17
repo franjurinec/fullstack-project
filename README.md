@@ -39,6 +39,16 @@ The following general features exist in the app:
   - Persisted local state
   - API data validation
   - React Query integration
+- Developer Features
+  - CI workflow linting and E2E testing
+  - CD workflow for Cloudflare Pages deployment
+  - CD workflow for Docker image publishing
+  - Docker Compose + Dockerfile for app deployment
+  - Docker Compose + Dockerfile for development
+  - Cypress E2E frontend tests
+  - Cypress black-box API tests
+  - ESLint linting
+  - Prettier formatting
 
 
 ## Tech Overview
