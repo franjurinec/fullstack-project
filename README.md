@@ -4,10 +4,6 @@
 This application represents a simple web store constructed around [Cloudflare Pages](https://pages.cloudflare.com/) and the [Stripe](https://stripe.com/) API.
 The Cloudlfare Pages Functions (Edge Functions) are used as the application backend API, while Stripe as used as the main database containing product and order information.
 
-## Deployment
-The app is currently deployed at https://fullstack-project.pages.dev/.   
-(admin panel accessible via https://fullstack-project.pages.dev/admin)
-
 ## Screenshots
 Found in [SCREENSHOTS.md](https://github.com/franjurinec/fullstack-project/blob/master/SCREENSHOTS.md)
 
